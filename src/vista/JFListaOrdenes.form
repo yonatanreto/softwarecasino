@@ -507,7 +507,7 @@
               <Insets value="[5, 5, 5, 5]"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/close72rollover.png"/>
+              <Image iconType="3" name="/img/company.png"/>
             </Property>
           </Properties>
           <AuxValues>

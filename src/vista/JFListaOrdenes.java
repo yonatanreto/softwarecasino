@@ -217,7 +217,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnImprimir.setForeground(new java.awt.Color(102, 102, 102));
         btnImprimir.setIconTextGap(0);
         btnImprimir.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close72rollover.png"))); // NOI18N
+        btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/company.png"))); // NOI18N
         jXPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 501, 70, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
