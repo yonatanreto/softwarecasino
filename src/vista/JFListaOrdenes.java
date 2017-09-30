@@ -49,6 +49,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
+        btnImprimirTicket = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -206,7 +207,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnImprimir.setBackground(new java.awt.Color(255, 255, 255));
         btnImprimir.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/print.png"))); // NOI18N
-        btnImprimir.setToolTipText("Salir");
+        btnImprimir.setToolTipText("Imprimir listado");
         btnImprimir.setBorder(null);
         btnImprimir.setBorderPainted(false);
         btnImprimir.setContentAreaFilled(false);
@@ -217,8 +218,25 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnImprimir.setForeground(new java.awt.Color(102, 102, 102));
         btnImprimir.setIconTextGap(0);
         btnImprimir.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/company.png"))); // NOI18N
+        btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/printer72.png"))); // NOI18N
         jXPanel2.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 501, 70, 80));
+
+        btnImprimirTicket.setBackground(new java.awt.Color(255, 255, 255));
+        btnImprimirTicket.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnImprimirTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fax.png"))); // NOI18N
+        btnImprimirTicket.setToolTipText("Imprimir Ticket");
+        btnImprimirTicket.setBorder(null);
+        btnImprimirTicket.setBorderPainted(false);
+        btnImprimirTicket.setContentAreaFilled(false);
+        btnImprimirTicket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimirTicket.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        btnImprimirTicket.setFocusPainted(false);
+        btnImprimirTicket.setFocusable(false);
+        btnImprimirTicket.setForeground(new java.awt.Color(102, 102, 102));
+        btnImprimirTicket.setIconTextGap(0);
+        btnImprimirTicket.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        btnImprimirTicket.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fax72.png"))); // NOI18N
+        jXPanel2.add(btnImprimirTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 501, 80, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,6 +257,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnCerrar;
     public javax.swing.JButton btnImprimir;
+    public javax.swing.JButton btnImprimirTicket;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox comboFiltro;

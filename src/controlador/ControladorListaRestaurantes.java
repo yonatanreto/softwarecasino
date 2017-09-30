@@ -79,6 +79,8 @@ public class ControladorListaRestaurantes implements ActionListener , Runnable, 
     }
       
     public void inicializar(){
+        //Se oculta el boton para controlar el crear nuevos restaurantes
+          vistaLista.btnNuevo.setVisible(false);
           ((javax.swing.plaf.basic.BasicInternalFrameUI)vistaLista.getUI()).setNorthPane(null);
           configurarTabla();
           ControladorGeneral.inicializar(vistaLista,"Listado de usuarios");

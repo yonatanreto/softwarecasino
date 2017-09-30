@@ -36,7 +36,7 @@ CREATE TABLE `area_de_trabajos` (
 
 LOCK TABLES `area_de_trabajos` WRITE;
 /*!40000 ALTER TABLE `area_de_trabajos` DISABLE KEYS */;
-INSERT INTO `area_de_trabajos` VALUES (1,'01','PLANTA 1');
+INSERT INTO `area_de_trabajos` VALUES (1,'01','AREA1');
 /*!40000 ALTER TABLE `area_de_trabajos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `cargos` (
 
 LOCK TABLES `cargos` WRITE;
 /*!40000 ALTER TABLE `cargos` DISABLE KEYS */;
-INSERT INTO `cargos` VALUES (1,'GERENTE','01'),(2,'INGENIERO DE SISTEMAS','02');
+INSERT INTO `cargos` VALUES (1,'CARGO1','01'),(2,'CARGO2','02');
 /*!40000 ALTER TABLE `cargos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,6 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'7938103','CE','Yonatan ','Reyes','Torres',1,1),(2,'73196817','CC','FERNANDO ALBERTO','GUZMAN','PAJARO',1,2);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +157,6 @@ CREATE TABLE `ordenes` (
 
 LOCK TABLES `ordenes` WRITE;
 /*!40000 ALTER TABLE `ordenes` DISABLE KEYS */;
-INSERT INTO `ordenes` VALUES (3,1,0,'2017-09-10','21:33:03',1,6,1),(4,2,0,'2017-09-10','21:34:09',1,6,1),(5,3,0,'2017-09-10','21:40:01',1,6,1),(6,4,0,'2017-09-10','21:47:01',1,6,1),(7,5,0,'2017-09-10','21:49:41',1,6,1),(8,6,0,'2017-09-11','22:07:11',1,6,1),(9,7,0,'2017-09-11','22:16:34',1,6,1),(10,8,0,'2017-09-11','22:16:39',1,6,1),(11,9,0,'2017-09-11','22:18:58',1,6,1),(12,10,0,'2017-09-11','22:19:04',1,7,1),(13,11,0,'2017-09-11','22:30:11',1,6,1),(14,12,0,'2017-09-11','22:33:17',1,6,1),(15,13,0,'2017-09-11','22:35:53',1,7,1),(16,14,0,'2017-09-11','22:36:59',1,6,1),(17,15,0,'2017-09-11','22:38:28',1,8,1),(18,16,0,'2017-09-11','22:56:32',1,8,1),(19,17,0,'2017-09-12','00:03:37',1,7,1),(20,18,0,'2017-09-12','00:05:15',1,24,1),(21,19,0,'2017-09-12','00:10:50',1,7,1),(22,20,0,'2017-09-12','00:16:50',1,6,1),(23,21,0,'2017-09-12','00:19:07',1,6,1),(24,22,0,'2017-09-12','23:47:45',1,9,1),(25,23,0,'2017-09-20','21:54:34',1,9,1),(26,24,0,'2017-09-20','21:56:34',1,24,1),(27,25,0,'2017-09-23','11:49:01',2,25,1),(28,26,0,'2017-09-23','11:49:47',1,7,1);
 /*!40000 ALTER TABLE `ordenes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +172,7 @@ CREATE TABLE `restaurantes` (
   `nombre` varchar(50) NOT NULL,
   `nit` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +181,7 @@ CREATE TABLE `restaurantes` (
 
 LOCK TABLES `restaurantes` WRITE;
 /*!40000 ALTER TABLE `restaurantes` DISABLE KEYS */;
-INSERT INTO `restaurantes` VALUES (6,'BROADWAY','12345'),(7,'CASINO 2','321212'),(8,'Restaurante 2','5544433'),(9,'REstaurante 3','234413'),(23,'Restaurante 4','qwqwqw'),(24,'3232322','22222'),(25,'RESTAURANTE LA MOSCA ELEGANTE','12121212121');
+INSERT INTO `restaurantes` VALUES (6,'RESTAURANTE 1','1'),(7,'RESTAURANTE 2','2'),(26,'RESTAURANTE 3','3');
 /*!40000 ALTER TABLE `restaurantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +207,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'admin','admin','ADMINISTRADOR'),(3,'Yonatan','123','LIMITADO'),(5,'asdasdas','asd','LIMITADO');
+INSERT INTO `usuarios` VALUES (1,'admin','admin','ADMINISTRADOR'),(3,'Usuario2','123','LIMITADO'),(5,'USUARIO3','asd','LIMITADO');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-25 17:37:32
+-- Dump completed on 2017-09-30 13:56:39

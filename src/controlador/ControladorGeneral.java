@@ -26,6 +26,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import modelo.Conexion;
@@ -35,7 +37,6 @@ import org.jdesktop.swingx.painter.CompoundPainter;
 import org.jdesktop.swingx.painter.GlossPainter;
 import org.jdesktop.swingx.painter.MattePainter;
 import org.jdesktop.swingx.painter.PinstripePainter;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 import utilidades.CampoUnicoDAO;
 import utilidades.FormatoTextField;
 import utilidades.MiJDateChooser;
@@ -205,11 +206,10 @@ public class ControladorGeneral {
 //         jTableHeader.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(218, 218, 218), 1, true));
          jTableHeader.setFont(new java.awt.Font("Calibri", 1, 17));
          jTableHeader.setSize(jTableHeader.getWidth(),14);
-         ((DefaultTableCellHeaderRenderer)jTableHeader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+         ((DefaultTableCellRenderer) tabla.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
          tabla.setRowHeight(22);
          
-//         jTableHeader.updateUI();
-//         tabla.updateUI();
+
         
      
      }
