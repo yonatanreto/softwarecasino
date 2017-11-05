@@ -68,8 +68,8 @@ public class JFLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jXPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jXPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jXPanel2.setBackground(new java.awt.Color(52, 133, 254));
+        jXPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 255)));
 
         jXPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jXPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

@@ -31,6 +31,8 @@ public class LogicaGeneral {
            mensajes.put("CampoUnico","Ya existe un registro con igual valor para el campo");
            mensajes.put("CampoIgual","No coincide el valor ingresado para el campo");
            mensajes.put("NoDatosFechas","No hay registros relacionados a las fechas ingresadas");
+           mensajes.put("NoConexion","Error de conexión");
+           mensajes.put("RegistroEnFecha","Ya existen registros en la fecha indicada");
            
        
        }

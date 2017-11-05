@@ -228,11 +228,19 @@ public void configuraciónBotones(JButton boton,int columna){
        //Valida que los campos no esten vacíos 
         public boolean validar(){
             String respuesta="";
-      if(vistaVO.jfcEmpleado.getDato()==null){
+        if(vistaVO.jfcEmpleado.getDato()==null){
                 ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoVacio")+" "+"Empleado");
                 vistaVO.jfcEmpleado.filter_campo.requestFocus();
                 return false;
         }
+        Empleados empleado =(Empleados) vistaVO.jfcEmpleado.getDato();
+        List<Ordenes> listaOrdenes= modeloDAO.findOrdenesEntitiesPorFechasEmpleado(new Date(), empleado);
+        if(listaOrdenes.size()>0){
+            ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("RegistroEnFecha")+" "+"para este Empleado , Cant:"+listaOrdenes.size());
+            vistaVO.jfcEmpleado.filter_campo.requestFocus();
+            return false;
+        }
+        
         return true;
     }
 

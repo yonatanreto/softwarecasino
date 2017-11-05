@@ -50,6 +50,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         btnImprimirTicket = new javax.swing.JButton();
+        txtNumeroRegistros = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -173,8 +174,8 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Fecha inicial");
+        jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jXPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 132, 80, -1));
 
         jdcFechaFinal.setBackground(new java.awt.Color(255, 255, 255));
@@ -189,7 +190,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscar.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/binoculars.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/binoculars_icon.png"))); // NOI18N
         btnBuscar.setToolTipText("Salir");
         btnBuscar.setBorder(null);
         btnBuscar.setBorderPainted(false);
@@ -201,7 +202,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnBuscar.setForeground(new java.awt.Color(102, 102, 102));
         btnBuscar.setIconTextGap(0);
         btnBuscar.setMargin(new java.awt.Insets(5, 5, 5, 5));
-        btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/zoom.png"))); // NOI18N
+        btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/binoculars_rollover.png"))); // NOI18N
         jXPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 130, 80, 70));
 
         btnImprimir.setBackground(new java.awt.Color(255, 255, 255));
@@ -237,6 +238,11 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnImprimirTicket.setMargin(new java.awt.Insets(5, 5, 5, 5));
         btnImprimirTicket.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fax72.png"))); // NOI18N
         jXPanel2.add(btnImprimirTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 501, 80, 80));
+
+        txtNumeroRegistros.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        txtNumeroRegistros.setForeground(new java.awt.Color(102, 102, 102));
+        txtNumeroRegistros.setText("No registros: 0");
+        jXPanel2.add(txtNumeroRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -275,5 +281,6 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelTitulo;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField txtFiltro;
+    public javax.swing.JLabel txtNumeroRegistros;
     // End of variables declaration//GEN-END:variables
 }

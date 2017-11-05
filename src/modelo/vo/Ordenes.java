@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Ordenes.findByCodigo", query = "SELECT o FROM Ordenes o WHERE o.codigo = :codigo")
     , @NamedQuery(name = "Ordenes.findByEstado", query = "SELECT o FROM Ordenes o WHERE o.estado = :estado")
     , @NamedQuery(name = "Ordenes.findByFecha", query = "SELECT o FROM Ordenes o WHERE o.fecha = :fecha")
+    , @NamedQuery(name = "Ordenes.findByFechaEmpleado", query = "SELECT o FROM Ordenes o WHERE o.fecha = :fecha and o.empleado=:empleado")
     , @NamedQuery(name = "Ordenes.findByFechaInicialFinal", query = "SELECT o FROM Ordenes o WHERE o.fecha >=:fechaInicial and o.fecha <=:fechaFinal ")
     , @NamedQuery(name = "Ordenes.findByHora", query = "SELECT o FROM Ordenes o WHERE o.hora = :hora")
     , @NamedQuery(name = "Ordenes.findByEmpleado", query = "SELECT o FROM Ordenes o WHERE o.empleado = :empleado")

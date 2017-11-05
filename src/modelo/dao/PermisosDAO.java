@@ -6,7 +6,6 @@
 package modelo.dao;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,16 +15,16 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import modelo.dao.exceptions.NonexistentEntityException;
-import modelo.vo.Empleados;
-import modelo.vo.Ordenes;
+import modelo.vo.Permisos;
+import modelo.vo.Usuarios;
 
 /**
  *
  * @author Usuario
  */
-public class OrdenesDAO implements Serializable {
+public class PermisosDAO implements Serializable {
 
-    public OrdenesDAO(EntityManagerFactory emf) {
+    public PermisosDAO(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -34,12 +33,12 @@ public class OrdenesDAO implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void crear(Ordenes ordenes) {
+    public void crear(Permisos permisos) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(ordenes);
+            em.persist(permisos);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,19 +47,19 @@ public class OrdenesDAO implements Serializable {
         }
     }
 
-    public void editar(Ordenes ordenes) throws NonexistentEntityException, Exception {
+    public void editar(Permisos permisos) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            ordenes = em.merge(ordenes);
+            permisos = em.merge(permisos);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = ordenes.getId();
-                if (findOrdenes(id) == null) {
-                    throw new NonexistentEntityException("The ordenes with id " + id + " no longer exists.");
+                Integer id = permisos.getId();
+                if (findPermisos(id) == null) {
+                    throw new NonexistentEntityException("The permisos with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -76,14 +75,14 @@ public class OrdenesDAO implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Ordenes ordenes;
+            Permisos permisos;
             try {
-                ordenes = em.getReference(Ordenes.class, id);
-                ordenes.getId();
+                permisos = em.getReference(Permisos.class, id);
+                permisos.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The ordenes with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The permisos with id " + id + " no longer exists.", enfe);
             }
-            em.remove(ordenes);
+            em.remove(permisos);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -92,19 +91,19 @@ public class OrdenesDAO implements Serializable {
         }
     }
 
-    public List<Ordenes> findOrdenesEntities() {
-        return findOrdenesEntities(true, -1, -1);
+    public List<Permisos> findPermisosEntities() {
+        return findPermisosEntities(true, -1, -1);
     }
 
-    public List<Ordenes> findOrdenesEntities(int maxResults, int firstResult) {
-        return findOrdenesEntities(false, maxResults, firstResult);
+    public List<Permisos> findPermisosEntities(int maxResults, int firstResult) {
+        return findPermisosEntities(false, maxResults, firstResult);
     }
 
-    private List<Ordenes> findOrdenesEntities(boolean all, int maxResults, int firstResult) {
+    private List<Permisos> findPermisosEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Ordenes.class));
+            cq.select(cq.from(Permisos.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -116,20 +115,20 @@ public class OrdenesDAO implements Serializable {
         }
     }
 
-    public Ordenes findOrdenes(Integer id) {
+    public Permisos findPermisos(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Ordenes.class, id);
+            return em.find(Permisos.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getOrdenesCount() {
+    public int getPermisosCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Ordenes> rt = cq.from(Ordenes.class);
+            Root<Permisos> rt = cq.from(Permisos.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -138,31 +137,16 @@ public class OrdenesDAO implements Serializable {
         }
     }
     
-      public List<Ordenes> findOrdenesEntitiesPorFechas(Date fechaInicial,Date fechaFinal) {
+      public List<Permisos> findPermisosEntitiesPorUsuario(Usuarios usuario) {
         EntityManager em = getEntityManager();
         try {
-            TypedQuery<Ordenes> q= em.createNamedQuery("Ordenes.findByFechaInicialFinal", Ordenes.class);           
-            q.setParameter("fechaInicial",fechaInicial);
-            q.setParameter("fechaFinal",fechaFinal);
-            
+            TypedQuery<Permisos> q= em.createNamedQuery("Permisos.findByUsuario", Permisos.class);           
+            q.setParameter("usuario",usuario);
+                      
             return q.getResultList();
         } finally {
             em.close();
         }
     }
-      
-       public List<Ordenes> findOrdenesEntitiesPorFechasEmpleado(Date fecha,Empleados empleado) {
-        EntityManager em = getEntityManager();
-        try {
-            TypedQuery<Ordenes> q= em.createNamedQuery("Ordenes.findByFechaEmpleado", Ordenes.class);           
-            q.setParameter("fecha",fecha);
-            q.setParameter("empleado",empleado);
-            
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-    //TypedQuery<Usuarios> consultaAlumnos= em.createNamedQuery("Usuarios.findByUsuario", Usuarios.class);
     
 }

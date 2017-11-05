@@ -9,6 +9,7 @@
     <class>modelo.vo.AreaDeTrabajos</class>
     <class>modelo.vo.Ordenes</class>
     <class>modelo.vo.ConfiguracionImpresionOrden</class>
+    <class>modelo.vo.Permisos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/casino?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

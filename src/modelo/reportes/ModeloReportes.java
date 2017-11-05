@@ -63,7 +63,7 @@ public class ModeloReportes {
 
     }
       
-      public void imprimirListaRecaudos(DefaultTableModel modelo, Date fechaInicial, Date fechaFinal){
+      public void imprimirListaOrdenes(DefaultTableModel modelo, Date fechaInicial, Date fechaFinal){
 		try{
 			
                         JasperReport jasperReport;

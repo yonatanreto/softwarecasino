@@ -26,11 +26,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 import modelo.dao.CargosDAO;
+import modelo.dao.ConfiguracionImpresionOrdenDAO;
 import modelo.dao.EmpleadosDAO;
 import modelo.dao.OrdenesDAO;
 import modelo.logica.LogicaGeneral;
 import modelo.reportes.ModeloReportes;
 import modelo.vo.Cargos;
+import modelo.vo.ConfiguracionImpresionOrden;
 import modelo.vo.Empleados;
 import modelo.vo.Ordenes;
 import utilidades.MiJDateChooser;
@@ -68,6 +70,7 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
             this.vistaLista.btnSalir.addActionListener(this);   
             this.vistaLista.btnBuscar.addActionListener(this);
             this.vistaLista.btnImprimir.addActionListener(this);
+            this.vistaLista.btnImprimirTicket.addActionListener(this);
             this.vistaLista.txtFiltro.addKeyListener(this);          
             this.vistaLista.tabla.addMouseListener(this);
             
@@ -114,7 +117,19 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
          ControladorGeneral.personalizarTabla(vistaLista.tabla);
     }
     
-  
+   public void imprimirTicket(){
+      if(!select.isSelectionEmpty()) {
+                        objetoVO=getObjetoVOSeleccionado();
+                      
+                             
+                        ConfiguracionImpresionOrden objetoVoConfiguracion=ConfiguracionImpresionOrdenDAO.getConfiguracionImpresionOrden();
+                        ModeloReportes modeloReportes = new ModeloReportes();
+                        modeloReportes.imprimirOrdenTicket(objetoVO, objetoVoConfiguracion);
+                        }else{
+                     ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("SeleccionFila"));
+                 }
+   
+   }
 
     //Metodo que implementa la interfaz Runnable
     @Override
@@ -138,7 +153,7 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
                         fila[4]=" "+ formatoHora.format(objetoVO_aux.getHora());   
                        dtm.addRow(fila);
                    }           
-                           
+                    vistaLista.txtNumeroRegistros.setText("No registros: "+listaObjetoVO.size());
                     if(sorter==null){
 				sorter = new MiTableRowSorter(dtm);
                                 vistaLista.tabla.setRowSorter(sorter);
@@ -183,7 +198,7 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
    }
     public void ejecutarFiltrado(){              
                ControladorGeneral.filtrarTabla(vistaLista.comboFiltro,select,sorter,vistaLista.tabla,vistaLista.txtFiltro.getText().trim());
-   
+                 vistaLista.txtNumeroRegistros.setText("No registros: "+ControladorGeneral.tabla_para_imprimir(dtm, sorter,vistaLista.tabla).getRowCount());
    }
    
     
@@ -216,48 +231,23 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
 
                //Aqui se agrega el código de acción al botón Nuevo Formulario Lista
             if(e.getSource()==vistaLista.btnBuscar){                
-//               ControladorGeneral.actualizar_tabla(this.dtm, this.sorter, this.vistaLista.tabla, this.hilo, this);
+
                actualizar_tabla();
                
+               
             }
-             if(e.getSource()==vistaLista.btnImprimir){                
+            if(e.getSource()==vistaLista.btnImprimir){                
                  ModeloReportes modeloReportes = new ModeloReportes();
-                 modeloReportes.imprimirListaRecaudos(dtm,fechaIni,fechaFin);
+                 modeloReportes.imprimirListaOrdenes(ControladorGeneral.tabla_para_imprimir(dtm, sorter,vistaLista.tabla),fechaIni,fechaFin);
                  
                  
             }
+            
+            if(e.getSource()==vistaLista.btnImprimirTicket){                
+                 imprimirTicket();
+            }
+          
 //            
-//               //Aqui se agrega el código de acción al botón Editar Formulario Lista
-//            if(e.getSource()==vistaLista.btnEditar){
-//                  if(!select.isSelectionEmpty()) {
-//                        objetoVO=getObjetoVOSeleccionado();
-//                        iniciarVistaObjetoVO("EDITAR");                
-//                        }else{
-//                     ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("SeleccionFila"));
-//                 }
-//
-//            }
-//               //Aqui se agrega el código de acción al botón Eliminar Formulario Lista
-//            if(e.getSource()==vistaLista.btnEliminar){
-//                    if(!select.isSelectionEmpty()) {
-//                         objetoVO =getObjetoVOSeleccionado();
-//                         String mensaje="";
-//                            if((mensaje=modeloDAO.relacionOtrasEntidades(objetoVO)).equalsIgnoreCase("OK")){
-//                                try{
-//                                    modeloDAO.eliminar(objetoVO.getId());
-//                                    this.actualizar_tabla();
-//                                    ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("Eliminar"));
-//                                }catch(Exception ex){
-//                                     Logger.getLogger(ControladorListaOrdenes.class.getName()).log(Level.SEVERE, null, ex);
-//                                     ex.printStackTrace();
-//                                }
-//                            }else{
-//                              ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("NoEliminar"));
-//                            }
-//                       }else{
-//                        ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("SeleccionFila"));
-//                    }
-//            }
                //Aqui se agrega el código de acción al botón Salir Formulario Lista
             if(e.getSource()==vistaLista.btnSalir){
                  ControladorGeneral.salirVista("ListaOrdenes", vistaLista);
@@ -284,17 +274,12 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
     @Override
     public void mouseClicked(MouseEvent e) {
         
-//          if(e.getSource()==vistaLista.tabla){
-//             if(e.getClickCount()==2){
-//                  if(!select.isSelectionEmpty()) {
-//                        objetoVO=getObjetoVOSeleccionado();
-//                        iniciarVistaObjetoVO("EDITAR");                
-//                        }else{
-//                     ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("SeleccionFila"));
-//                 }
-//           }
-//          
-//          }
+          if(e.getSource()==vistaLista.tabla){
+             if(e.getClickCount()==2){
+                 imprimirTicket();
+           }
+          
+          }
         
     }
 

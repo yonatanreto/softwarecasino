@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyVetoException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
@@ -275,6 +276,52 @@ public class ControladorGeneral {
         jdChooser.getCalendarButton().setEnabled(enabled);
     
     
+    }
+       public static DefaultTableModel tabla_para_imprimir(DefaultTableModel dtm, MiTableRowSorter sorter, JTable tabla) {
+         if (sorter.getRowFilter() != null) {
+            if (tabla_filtrada(dtm,sorter).getRowCount() == dtm.getRowCount()) {
+                return tabla_ordenada(dtm, tabla);
+            } else {
+               return tabla_filtrada(dtm,sorter);
+            }
+        } else {
+           return tabla_ordenada(dtm, tabla);
+
+        }
+    }
+       
+       public static DefaultTableModel tabla_filtrada(DefaultTableModel dtm, MiTableRowSorter sorter) {
+        DefaultTableModel tabla2 = new DefaultTableModel();
+        for (int i = 0; i < dtm.getColumnCount(); i++) {
+            tabla2.addColumn(dtm.getColumnName(i));
+        }
+        for (int i = 0; i < sorter.getModelView().length; i++) {
+            if (sorter.getModelView()[i] != -1) {
+                tabla2.addRow((Vector) dtm.getDataVector().get(i));
+            }
+        }
+        return tabla2;
+    }
+
+    //metodo de tabla ordenada
+    public static DefaultTableModel tabla_ordenada(DefaultTableModel dtm, JTable tabla) {
+        DefaultTableModel tabla2 = new DefaultTableModel();
+        Object filas[][] = new Object[dtm.getRowCount()][dtm.getColumnCount()];
+        Object columnas[] = new Object[dtm.getColumnCount()];
+        for (int i = 0; i < dtm.getColumnCount(); i++) {
+            columnas[i] = dtm.getColumnName(i);
+        }
+        for (int i = 0; i < dtm.getRowCount(); i++) {
+            int row =tabla.convertRowIndexToView(i);
+            for (int j = 0; j < dtm.getColumnCount(); j++) {
+                filas[row][j] = dtm.getValueAt(i, j);
+                
+            }
+            
+
+        }
+        tabla2.setDataVector(filas, columnas);
+        return tabla2;
     }
     
 }

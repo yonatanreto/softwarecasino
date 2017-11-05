@@ -42,6 +42,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         panelMenuListaOrdenes = new org.jdesktop.swingx.JXPanel();
         btnListaOrdenes = new javax.swing.JButton();
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
         jXPanel3 = new org.jdesktop.swingx.JXPanel();
         jXPanel4 = new org.jdesktop.swingx.JXPanel();
@@ -189,6 +190,27 @@ public class JFPrincipal extends javax.swing.JFrame {
 
         desktopPane.setBackground(new java.awt.Color(255, 255, 255));
         desktopPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(233, 233, 233)));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo fx solutions.png"))); // NOI18N
+
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, desktopPaneLayout.createSequentialGroup()
+                .addContainerGap(114, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         jXPanel1.setBackground(new java.awt.Color(52, 133, 254));
         jXPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 226, 226)));
@@ -411,7 +433,7 @@ public class JFPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jXPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
+                .addComponent(desktopPane))
         );
 
         pack();
@@ -457,6 +479,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton btnUsuarios;
     public javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JLabel jLabel1;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
