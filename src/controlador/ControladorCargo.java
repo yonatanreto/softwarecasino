@@ -141,7 +141,7 @@ public class ControladorCargo implements ActionListener,InternalFrameListener,Mo
       if(validar()){
           String campoUnicoVista= this.vistaVO.txtCodigo.getText();
           String nombreObjeto=objetoVO==null?"":objetoVO.getCodigo();
-          if(ControladorGeneral.validarCampoUnico(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
+          if(ControladorGeneral.validarCampoUnico1(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
               guardar();
           }else{
              ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"Código");

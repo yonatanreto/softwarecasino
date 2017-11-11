@@ -164,6 +164,16 @@ public class ControladorGeneral {
      
      }
      
+      public static String vaciarCampos(JTextField... textFields){
+            for (JTextField textField : textFields) {
+               if (!textField.getText().isEmpty()) {
+                   textField.setText("");
+               }
+           }
+           return "OK";
+     
+     }
+     
      public static void formatoCantidadCaracteres(int cantidad,JTextField... textFields){
               for (JTextField textField : textFields) {
                textField.setDocument(new FormatoTextField(cantidad));
@@ -171,9 +181,44 @@ public class ControladorGeneral {
             
      }
      
-     public static boolean validarCampoUnico(String acción,String valorCampo,String valorObjeto,CampoUnicoDAO dao){
+     public static void formatoContenidoCantidadCaracteres(String formato,int cantidad,JTextField... textFields){
+              for (JTextField textField : textFields) {
+               textField.setDocument(new FormatoTextField(formato,cantidad));
+           }
+            
+     }
+     
+     public static boolean validarCampoUnico1(String acción,String valorCampo,String valorObjeto,CampoUnicoDAO dao){
        boolean respuesta=true;
-       Object objeto=dao.getElementoPorCampoUnico(valorCampo);
+       Object objeto=dao.getElementoPorCampoUnico1(valorCampo);
+       
+        if(acción.equalsIgnoreCase("EDITAR")){
+                if(valorObjeto.equalsIgnoreCase(valorCampo)){
+                   respuesta=true;
+                }else{
+                       if(objeto!=null){
+                           
+                                  respuesta=false;
+                         }else{
+                                  respuesta=true;
+                         }
+                }
+            }else{
+               if(objeto!=null){
+                                   respuesta=false;
+                         }else{
+                                   respuesta=true;
+                         }
+            }
+       
+       
+       return respuesta;
+     
+     }
+     
+     public static boolean validarCampoUnico2(String acción,String valorCampo,String valorObjeto,CampoUnicoDAO dao){
+       boolean respuesta=true;
+       Object objeto=dao.getElementoPorCampoUnico2(valorCampo);
        
         if(acción.equalsIgnoreCase("EDITAR")){
                 if(valorObjeto.equalsIgnoreCase(valorCampo)){

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import modelo.logica.LogicaGeneral;
 import utilidades.ParametrosConexion;
 /**
@@ -85,36 +86,38 @@ public class Conexion {
       return pc;
 }
      
-      public static void guardarParametrosConexion(ParametrosConexion pc) throws IOException {
+      public static void guardarParametrosConexion(ParametrosConexion pc, File folder) throws IOException {
         //"../conexion/parametrosConexion.parameters"
         
-        File folder = new File("..\\conexion");
+//        File folder = new File("..\\conexion");
         if (!folder.exists()) {
             folder.mkdirs();
         }
         ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("../conexion/parametrosConexion.parameters"));
-        salida.writeObject(Conexion.crearObjetoParametros());
+        salida.writeObject(pc);
         salida.close();
 
     }
-     public static ParametrosConexion crearObjetoParametros(){
+     public static void crearObjetoParametros(String usuario,String password,String baseDeDatos,String url,File folder){
            ParametrosConexion pc = new ParametrosConexion();
-            pc.setUsuario("root");
-            pc.setUrl("qweqw");
-            pc.setPassword("1234");
-            pc.setDataBase("casino");
+            pc.setUsuario(usuario);
+            pc.setPassword(password);
+            pc.setDataBase(baseDeDatos);
+            pc.setUrl(url);           
             pc.setServer_name("");
-            return pc;
+            try {
+                guardarParametrosConexion(pc,folder);
+            } catch (IOException ex) {
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
      
      }
      
      public static void prepararConexion() throws IOException{
         pc= obtenerParametrosConexion();
         if(pc==null){
-            pc= crearObjetoParametros();
-            guardarParametrosConexion(pc);
-        }else{
-            System.out.println("No es nulo "+pc.getUrl());
+            JOptionPane.showMessageDialog(null,"Error de conexión");
+            System.exit(0);
         }
      
      }

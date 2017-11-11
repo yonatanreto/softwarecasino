@@ -181,7 +181,7 @@ public class UsuariosDAO implements Serializable,utilidades.CampoUnicoDAO {
     }
 
     @Override
-    public Object getElementoPorCampoUnico(Object parametro) {
+    public Object getElementoPorCampoUnico1(Object parametro) {
         EntityManager em = getEntityManager();
           try {
             TypedQuery<Usuarios> consultaAlumnos= em.createNamedQuery("Usuarios.findByUsuario", Usuarios.class);
@@ -199,6 +199,11 @@ public class UsuariosDAO implements Serializable,utilidades.CampoUnicoDAO {
         }
    
     
+    }
+
+    @Override
+    public Object getElementoPorCampoUnico2(Object parametro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

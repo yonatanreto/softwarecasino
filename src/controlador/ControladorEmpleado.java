@@ -27,6 +27,7 @@ import modelo.logica.LogicaGeneral;
 import modelo.vo.AreaDeTrabajos;
 import modelo.vo.Cargos;
 import modelo.vo.Empleados;
+import utilidades.FormatoTextField;
 
 import vista.JFCargo;
 import vista.JFEmpleado;
@@ -69,6 +70,7 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
             this.vistaVO.labelMover.addMouseListener(this);
              this.vistaVO.comboTipoDocumento.addKeyListener(this);
             this.vistaVO.comboTipoDocumento.addActionListener(this);
+            this.vistaVO.btnGenerarCodigo.addActionListener(this);
       
     }
     
@@ -81,6 +83,7 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
          
           //Aqui asigno que solo se permitan 50 caracteres en los campos
           ControladorGeneral.formatoCantidadCaracteres(50,vistaVO.txtNombre,vistaVO.txtApellido1,vistaVO.txtApellido2,vistaVO.txtDocumento);
+          ControladorGeneral.formatoContenidoCantidadCaracteres(FormatoTextField.NUMERIC,10,vistaVO.txtCupo);
            vistaVO.jfcAreaDeTrabajo.setNext_component(vistaVO.btnGuardar);
           vistaVO.jfcAreaDeTrabajo.setAuxiliar_component(vistaVO.txtAreaDeTrabajo);
           vistaVO.jfcCargo.setAuxiliar_component(vistaVO.txtCargo);
@@ -114,6 +117,8 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
             vistaVO.txtNombre.setText(objetoVO.getNombres());
             vistaVO.jfcCargo.setDato((AbstractCodigo)objetoVO.getCargo());
             vistaVO.jfcAreaDeTrabajo.setDato((AbstractCodigo)objetoVO.getAreaDeTrabajo());
+            vistaVO.txtCodigo.setText(objetoVO.getCodigo());
+            vistaVO.txtCupo.setText(objetoVO.getCupoOrdenes()+"");
             
            
         
@@ -156,6 +161,8 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
         objetoVO.setNombres(vistaVO.txtNombre.getText());
         objetoVO.setApellido1(vistaVO.txtApellido1.getText());
         objetoVO.setApellido2(vistaVO.txtApellido2.getText());
+        objetoVO.setCodigo(vistaVO.txtCodigo.getText());
+        objetoVO.setCupoOrdenes(Integer.valueOf(vistaVO.txtCupo.getText()));
         objetoVO.setCargo((Cargos) vistaVO.jfcCargo.getDato());
         objetoVO.setAreaDeTrabajo((AreaDeTrabajos) vistaVO.jfcAreaDeTrabajo.getDato());
         
@@ -168,7 +175,7 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
         public boolean validar(){
             String respuesta="";
         if(!(respuesta=ControladorGeneral.validarTxtVacios(vistaVO.txtNombre,
-                 vistaVO.txtApellido1,vistaVO.txtApellido2)).equalsIgnoreCase("OK")){
+                 vistaVO.txtApellido1,vistaVO.txtApellido2,vistaVO.txtCargo,vistaVO.txtCupo)).equalsIgnoreCase("OK")){
                 return false;
         }else if(vistaVO.jfcCargo.getDato()==null){
                 ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoVacio")+" "+"Cargo");
@@ -178,6 +185,26 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
                 ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoVacio")+" "+"Área de trabajo");
                 vistaVO.jfcAreaDeTrabajo.filter_campo.requestFocus();
                 return false;
+        }else {
+          String campoUnicoVista= this.vistaVO.txtDocumento.getText();
+          String nombreObjeto=objetoVO==null?"":objetoVO.getCedula();
+          if(!ControladorGeneral.validarCampoUnico1(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
+                ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"Documento");
+                vistaVO.txtDocumento.requestFocus();
+                return false;
+          }else{
+             campoUnicoVista= this.vistaVO.txtCodigo.getText();
+             nombreObjeto=objetoVO==null?"":objetoVO.getCodigo();
+            if(!ControladorGeneral.validarCampoUnico2(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
+                  ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"código para generar orden");
+                  vistaVO.txtCodigo.requestFocus();
+                  return false;
+            }
+          
+          
+          }
+        
+        
         }
        
         return true;
@@ -187,14 +214,7 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
     public void eventoGuardar(){
         
       if(validar()){
-          String campoUnicoVista= this.vistaVO.txtDocumento.getText();
-          String nombreObjeto=objetoVO==null?"":objetoVO.getCedula();
-          if(ControladorGeneral.validarCampoUnico(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
-              guardar();
-          }else{
-             ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"Documento");
-             vistaVO.txtDocumento.requestFocus();
-          }
+            guardar();
           
         }
     }
@@ -216,6 +236,21 @@ public class ControladorEmpleado implements ActionListener,InternalFrameListener
                   ControladorGeneral.salirVista("FormularioEmpleado", vistaVO);
                
             }
+        
+         if(e.getSource()==vistaVO.btnGenerarCodigo){
+           do{  
+               //AQUI VALIDO QUE EL CÓDIGO GENERADO SEA UNICO
+            vistaVO.txtCodigo.setText(((long)(Math.random()*1000000000))+"");
+               System.out.println(" Código "+ this.vistaVO.txtCodigo.getText());
+             String campoUnicoVista= this.vistaVO.txtCodigo.getText();
+             String nombreObjeto=objetoVO==null?"":objetoVO.getCodigo();
+            if(ControladorGeneral.validarCampoUnico2(acción, campoUnicoVista, nombreObjeto, modeloDAO)){         
+                 
+                 break;
+            }
+           }while(true);
+        }
+
         
         if(e.getSource()==vistaVO.txtDocumento){
               vistaVO.comboTipoDocumento.requestFocus();

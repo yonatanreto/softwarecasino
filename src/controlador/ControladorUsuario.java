@@ -253,7 +253,7 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
       if(validar()){
           String nombreUsuario= this.vistaVO.txtUsuario.getText();
           String nombreObjeto=objetoVO==null?"":objetoVO.getUsuario();
-          if(ControladorGeneral.validarCampoUnico(acción, nombreUsuario, nombreObjeto, modeloDAO)){          
+          if(ControladorGeneral.validarCampoUnico1(acción, nombreUsuario, nombreObjeto, modeloDAO)){          
               guardar();
           }else{
              ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"Usuario");

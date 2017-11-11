@@ -27,7 +27,7 @@
 		<band/>
 	</background>
 	<title>
-		<band height="135" splitType="Stretch">
+		<band height="179" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement key="textField" x="65" y="31" width="125" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="aa9771b6-f206-47fc-b7ca-b91c74ca50b2"/>
 				<box>
@@ -152,7 +152,7 @@
 				</textElement>
 				<text><![CDATA[FECHA]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yy" isBlankWhenNull="true">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement key="textField" x="71" y="95" width="50" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="db885e7b-55ff-43da-8ae6-d25ec20a14d0"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -217,6 +217,12 @@
 				</textElement>
 				<text><![CDATA[: ]]></text>
 			</staticText>
+			<componentElement>
+				<reportElement x="0" y="135" width="189" height="31" uuid="9f0e63c2-06b3-4b03-9d0e-e75f9f707124"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$P{codigo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
 		</band>
 	</title>
 	<pageHeader>

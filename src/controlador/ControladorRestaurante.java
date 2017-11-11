@@ -138,7 +138,7 @@ public class ControladorRestaurante implements ActionListener,InternalFrameListe
       if(validar()){
           String campoUnicoVista= this.vistaVO.txtNit.getText();
           String nombreObjeto=objetoVO==null?"":objetoVO.getNit();
-          if(ControladorGeneral.validarCampoUnico(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
+          if(ControladorGeneral.validarCampoUnico1(acción, campoUnicoVista, nombreObjeto, modeloDAO)){          
               guardar();
           }else{
              ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoUnico")+" "+"Nit");

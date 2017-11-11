@@ -34,12 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Empleados.findAll", query = "SELECT e FROM Empleados e")
     , @NamedQuery(name = "Empleados.findById", query = "SELECT e FROM Empleados e WHERE e.id = :id")
     , @NamedQuery(name = "Empleados.findByCedula", query = "SELECT e FROM Empleados e WHERE e.cedula = :cedula")
+    , @NamedQuery(name = "Empleados.findByCodigo", query = "SELECT e FROM Empleados e WHERE e.codigo = :codigo")
     , @NamedQuery(name = "Empleados.findByTipoDocumento", query = "SELECT e FROM Empleados e WHERE e.tipoDocumento = :tipoDocumento")
     , @NamedQuery(name = "Empleados.findByNombres", query = "SELECT e FROM Empleados e WHERE e.nombres = :nombres")
     , @NamedQuery(name = "Empleados.findByApellido1", query = "SELECT e FROM Empleados e WHERE e.apellido1 = :apellido1")
     , @NamedQuery(name = "Empleados.findByApellido2", query = "SELECT e FROM Empleados e WHERE e.apellido2 = :apellido2")})
 public class Empleados implements Serializable,AbstractCodigo {
 
+   
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +65,12 @@ public class Empleados implements Serializable,AbstractCodigo {
     @JoinColumn(name = "area_de_trabajo", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.EAGER)
     private AreaDeTrabajos areaDeTrabajo;
+    
+    @Column(name = "codigo", length = 100)
+    private String codigo;
+    
+    @Column(name = "cupo_ordenes")
+    private Integer cupoOrdenes;
 
     public Empleados() {
     }
@@ -174,5 +182,34 @@ public class Empleados implements Serializable,AbstractCodigo {
     public String getNombre_abs() {
        return toString();
     }
+    
+     /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    /**
+     * @return the cupoOrdenes
+     */
+    public Integer getCupoOrdenes() {
+        return cupoOrdenes;
+    }
+
+    /**
+     * @param cupoOrdenes the cupoOrdenes to set
+     */
+    public void setCupoOrdenes(Integer cupoOrdenes) {
+        this.cupoOrdenes = cupoOrdenes;
+    }
+
     
 }

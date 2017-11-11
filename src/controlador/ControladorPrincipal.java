@@ -11,9 +11,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import modelo.Conexion;
 import modelo.dao.OrdenesDAO;
+import modelo.dao.PermisosDAO;
+import modelo.vo.Permisos;
 import modelo.vo.Usuarios;
 import vista.JFListaAreaDeTrabajos;
 import vista.JFListaCargos;
@@ -37,11 +40,13 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
         static int lista_usuario=0;
         int x;
         int y;
+        PermisosDAO modeloPermisoDAO; 
        
 
     public ControladorPrincipal(JFPrincipal vistaPrincipal, Usuarios usuario) {
         ControladorPrincipal.usuario=usuario;
         ControladorPrincipal.dp=vistaPrincipal.desktopPane;
+         modeloPermisoDAO = new PermisosDAO(Conexion.f); 
         this.vistaPrincipal = vistaPrincipal;
         this.vistaPrincipal.btnUsuarios.addActionListener(this);
         this.vistaPrincipal.btnEmpleados.addActionListener(this);
@@ -72,11 +77,58 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
     }
     
     public void inicializar(){
-            vistaPrincipal.popupMenu.add(vistaPrincipal.panelMenu);
-//            vistaPrincipal.popupMenu.
+            vistaPrincipal.popupMenu.add(vistaPrincipal.panelMenu);           
             vistaPrincipal.setExtendedState(vistaPrincipal.MAXIMIZED_BOTH);
             vistaPrincipal.setVisible(true);
+             if(!usuario.getTipo().equalsIgnoreCase("ADMINISTRADOR")){
+              ocultarSesionUsuario();
+              cargarSesionUsuario();
+            
+            }
 
+    }
+    public void cargarSesionUsuario(){
+       List<Permisos> listaPermisos_guardados=  modeloPermisoDAO.findPermisosEntitiesPorUsuario(ControladorPrincipal.usuario);
+       
+        for (int i = 0; i < listaPermisos_guardados.size(); i++) {
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Usuarios")){
+                    vistaPrincipal.btnUsuarios.setVisible(true);
+                }
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Empleados")){
+                    vistaPrincipal.btnEmpleados.setVisible(true);
+                }
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Restaurantes")){
+                    vistaPrincipal.btnRestaurantes.setVisible(true);
+                }
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Ordenes")){
+                    vistaPrincipal.btnOrdenes.setVisible(true);
+                }
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("area de trabajo")){
+                    vistaPrincipal.btnAreaDeTrabajo.setVisible(true);
+                }
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Listado de ordenes")){
+                    vistaPrincipal.btnListaOrdenes.setVisible(true);
+                }
+                
+                if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Cargo")){
+                    vistaPrincipal.btnCargo.setVisible(true);
+                }
+                
+                
+            }    
+    
+    }
+    
+    public void ocultarSesionUsuario(){
+     vistaPrincipal.btnUsuarios.setVisible(false);
+     vistaPrincipal.btnEmpleados.setVisible(false);
+     vistaPrincipal.btnRestaurantes.setVisible(false);
+     vistaPrincipal.btnOrdenes.setVisible(false);
+     vistaPrincipal.btnCargo.setVisible(false);
+     vistaPrincipal.btnAreaDeTrabajo.setVisible(false);
+     vistaPrincipal.btnListaOrdenes.setVisible(false); 
+     
+    
     }
     //IMPLEMENTACION DE METODOS DE ESCUCHA               
     //INTERFACE ACTION LISTENER

@@ -161,7 +161,7 @@ public class RestaurantesDAO implements Serializable,utilidades.CampoUnicoDAO  {
     }
 
     @Override
-    public Object getElementoPorCampoUnico(Object parametro) {
+    public Object getElementoPorCampoUnico1(Object parametro) {
        EntityManager em = getEntityManager();
           try {
             TypedQuery<Restaurantes> consulta= em.createNamedQuery("Restaurantes.findByNit", Restaurantes.class);
@@ -177,6 +177,11 @@ public class RestaurantesDAO implements Serializable,utilidades.CampoUnicoDAO  {
        } finally {
             em.close();
         }
+    }
+
+    @Override
+    public Object getElementoPorCampoUnico2(Object parametro) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

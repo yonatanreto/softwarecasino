@@ -59,6 +59,13 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        jSeparator9 = new javax.swing.JSeparator();
+        btnGenerarCodigo = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JSeparator();
+        txtCupo = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -158,7 +165,7 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
         btnGuardar.setMinimumSize(new java.awt.Dimension(85, 33));
         btnGuardar.setPreferredSize(new java.awt.Dimension(85, 33));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/diskette72rollover.png"))); // NOI18N
-        jXPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 100, 80));
+        jXPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 100, 80));
 
         comboTipoDocumento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         comboTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "CE" }));
@@ -209,8 +216,8 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Segundo apellido");
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jXPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, -1, -1));
         jXPanel1.add(jfcCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 353, 150, 30));
 
@@ -253,6 +260,59 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
         jXPanel1.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 290, 280, 10));
         jXPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 384, 130, 10));
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jLabel8.setText("Código para generar orden");
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jXPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 480, 190, 30));
+
+        txtCodigo.setEditable(false);
+        txtCodigo.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtCodigo.setBorder(null);
+        txtCodigo.setMargin(new java.awt.Insets(10, 2, 0, 2));
+        txtCodigo.setName("Código para generar orden"); // NOI18N
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoActionPerformed(evt);
+            }
+        });
+        jXPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 516, 280, 30));
+        jXPanel1.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 548, 280, 10));
+
+        btnGenerarCodigo.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        btnGenerarCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key-(2).png"))); // NOI18N
+        btnGenerarCodigo.setBorder(null);
+        btnGenerarCodigo.setBorderPainted(false);
+        btnGenerarCodigo.setContentAreaFilled(false);
+        btnGenerarCodigo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenerarCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        btnGenerarCodigo.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        btnGenerarCodigo.setMaximumSize(new java.awt.Dimension(85, 33));
+        btnGenerarCodigo.setMinimumSize(new java.awt.Dimension(85, 33));
+        btnGenerarCodigo.setPreferredSize(new java.awt.Dimension(85, 33));
+        btnGenerarCodigo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key-rollover.png"))); // NOI18N
+        jXPanel1.add(btnGenerarCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 80, 80));
+        jXPanel1.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 548, 140, 10));
+
+        txtCupo.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        txtCupo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCupo.setText("1");
+        txtCupo.setBorder(null);
+        txtCupo.setMargin(new java.awt.Insets(10, 2, 0, 2));
+        txtCupo.setName("Cupo mensual"); // NOI18N
+        txtCupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCupoActionPerformed(evt);
+            }
+        });
+        jXPanel1.add(txtCupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 516, 140, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("Cupo mensual");
+        jXPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 480, 140, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -261,7 +321,7 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -295,9 +355,18 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAreaDeTrabajoActionPerformed
 
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void txtCupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCupoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCerrar;
+    public javax.swing.JButton btnGenerarCodigo;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JComboBox<String> comboTipoDocumento;
@@ -308,7 +377,10 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -316,6 +388,7 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     public org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel3;
     private org.jdesktop.swingx.JXPanel jXPanel4;
@@ -327,6 +400,8 @@ public class JFEmpleado extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtApellido2;
     public javax.swing.JTextField txtAreaDeTrabajo;
     public javax.swing.JTextField txtCargo;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCupo;
     public javax.swing.JTextField txtDocumento;
     public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
