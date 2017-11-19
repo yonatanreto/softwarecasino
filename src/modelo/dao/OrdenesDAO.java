@@ -15,8 +15,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import modelo.Conexion;
 import modelo.dao.exceptions.NonexistentEntityException;
 import modelo.vo.Empleados;
+import modelo.vo.Restaurantes;
 import modelo.vo.Ordenes;
 
 /**
@@ -151,7 +153,7 @@ public class OrdenesDAO implements Serializable {
         }
     }
       
-       public List<Ordenes> findOrdenesEntitiesPorFechasEmpleado(Date fecha,Empleados empleado) {
+       public List<Ordenes> findOrdenesEntitiesPorFechaEmpleado(Date fecha,Empleados empleado) {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Ordenes> q= em.createNamedQuery("Ordenes.findByFechaEmpleado", Ordenes.class);           
@@ -162,6 +164,57 @@ public class OrdenesDAO implements Serializable {
         } finally {
             em.close();
         }
+    }
+       
+        public int findOrdenesEntitiesPorFechasEmpleado(Date fechaInicial,Date fechaFinal,Empleados empleado) {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery q= em.createNamedQuery("Ordenes.CantidadFechaInicialFinalEmpleado", Ordenes.class);           
+            q.setParameter("fechaInicial",fechaInicial);
+            q.setParameter("fechaFinal",fechaFinal);
+            q.setParameter("empleado",empleado);
+             int cantidad = ((Number) q.getSingleResult()).intValue();
+            return cantidad;
+        } finally {
+            em.close();
+        }
+    }
+        
+        
+             
+             public List<Ordenes> findOrdenesEntitiesPorFechasRestaurante(Date fechaInicial,Date fechaFinal,Restaurantes restaurante) {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Ordenes> q= em.createNamedQuery("Ordenes.findByFechaInicialFinalRestaurante", Ordenes.class);           
+            q.setParameter("fechaInicial",fechaInicial);
+            q.setParameter("fechaFinal",fechaFinal);
+            q.setParameter("restaurante",restaurante);
+            
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+        
+      
+         public Ordenes findOrdenesNumeroOrden(String parametro) {
+             
+            EntityManager em = getEntityManager();
+               try {
+                 
+                 TypedQuery<Ordenes> consulta= em.createNamedQuery("Ordenes.findByCodigo", Ordenes.class);
+                 consulta.setParameter("codigo",parametro);
+                 Ordenes v=null;
+                 try{
+                v=(Ordenes)consulta.getSingleResult();
+
+              }catch(Exception ex){
+                 System.out.println("ERROR "+ex.getMessage());
+              }
+               return v;   
+            } finally {
+                 em.close();
+             }
     }
     //TypedQuery<Usuarios> consultaAlumnos= em.createNamedQuery("Usuarios.findByUsuario", Usuarios.class);
     

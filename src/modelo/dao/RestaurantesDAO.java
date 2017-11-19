@@ -114,7 +114,7 @@ public class RestaurantesDAO implements Serializable,utilidades.CampoUnicoDAO  {
 
     }
 
-    public List<Restaurantes> findRestaurantesEntities() {
+    public List findRestaurantesEntities() {
         return findRestaurantesEntities(true, -1, -1);
     }
 

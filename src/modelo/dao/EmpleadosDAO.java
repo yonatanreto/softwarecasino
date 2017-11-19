@@ -257,4 +257,22 @@ public class EmpleadosDAO implements Serializable,utilidades.CampoUnicoDAO  {
         }
     }
     
+     public Empleados getEmpleadoCódigo(String parametro) {
+       EntityManager em = getEntityManager();
+          try {
+            TypedQuery<Empleados> consulta= em.createNamedQuery("Empleados.findByCodigo", Empleados.class);
+            consulta.setParameter("codigo",parametro);
+            Empleados v=null;
+            try{
+           v=(Empleados)consulta.getSingleResult();
+            
+         }catch(Exception ex){
+            System.out.println("ERROR "+ex.getMessage());
+         }
+          return v;   
+       } finally {
+            em.close();
+        }
+    }
+    
 }

@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Ordenes.findByEstado", query = "SELECT o FROM Ordenes o WHERE o.estado = :estado")
     , @NamedQuery(name = "Ordenes.findByFecha", query = "SELECT o FROM Ordenes o WHERE o.fecha = :fecha")
     , @NamedQuery(name = "Ordenes.findByFechaEmpleado", query = "SELECT o FROM Ordenes o WHERE o.fecha = :fecha and o.empleado=:empleado")
+    , @NamedQuery(name = "Ordenes.CantidadFechaInicialFinalEmpleado", query = "SELECT count(o) FROM Ordenes o WHERE (o.fecha >=:fechaInicial and o.fecha <=:fechaFinal) and o.empleado=:empleado")
+    , @NamedQuery(name = "Ordenes.findByFechaInicialFinalRestaurante", query = "SELECT o FROM Ordenes o WHERE (o.fecha >=:fechaInicial and o.fecha <=:fechaFinal) and o.restaurante=:restaurante")
     , @NamedQuery(name = "Ordenes.findByFechaInicialFinal", query = "SELECT o FROM Ordenes o WHERE o.fecha >=:fechaInicial and o.fecha <=:fechaFinal ")
     , @NamedQuery(name = "Ordenes.findByHora", query = "SELECT o FROM Ordenes o WHERE o.hora = :hora")
     , @NamedQuery(name = "Ordenes.findByEmpleado", query = "SELECT o FROM Ordenes o WHERE o.empleado = :empleado")
@@ -93,8 +95,9 @@ public class Ordenes implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "codigo", nullable = false)
-    private int codigo;
+    @Column(name = "codigo", length = 50)
+    private String codigo;
+    //0 ES PENDIENTE POR ENTREGAR , 1 ES ENTREGADA
     @Column(name = "estado")
     private Integer estado;
     @Basic(optional = false)
@@ -127,7 +130,7 @@ public class Ordenes implements Serializable {
         this.id = id;
     }
 
-    public Ordenes(Integer id, int codigo, Date fecha, Date hora, Empleados empleado, Restaurantes restaurante, Usuarios usuario) {
+    public Ordenes(Integer id, String codigo, Date fecha, Date hora, Empleados empleado, Restaurantes restaurante, Usuarios usuario) {
         this.id = id;
         this.codigo = codigo;
         this.fecha = fecha;
@@ -145,11 +148,11 @@ public class Ordenes implements Serializable {
         this.id = id;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

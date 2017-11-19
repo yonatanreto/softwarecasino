@@ -140,7 +140,16 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
 //                   }    
                     fechaIni=vistaLista.jdcFechaInicial.getDate();
                     fechaFin=vistaLista.jdcFechaFinal.getDate();
-                    List  listaObjetoVO=(List) modeloDAO.findOrdenesEntitiesPorFechas(vistaLista.jdcFechaInicial.getDate(),vistaLista.jdcFechaFinal.getDate());
+                     List  listaObjetoVO=null;
+                     if(ControladorPrincipal.usuario.getTipo().equals("RESTAURANTE")){
+                         listaObjetoVO=(List) modeloDAO.findOrdenesEntitiesPorFechasRestaurante(vistaLista.jdcFechaInicial.getDate(),vistaLista.jdcFechaFinal.getDate(),ControladorPrincipal.usuario.getRestaurante());
+                     
+                      
+                    }else{
+                        listaObjetoVO=(List) modeloDAO.findOrdenesEntitiesPorFechas(vistaLista.jdcFechaInicial.getDate(),vistaLista.jdcFechaFinal.getDate());
+                     
+                     }
+                  
                     LogicaGeneral.setListaEntidad("Ordenes",listaObjetoVO);
                    ////[Usuario], [Tipo]
                    for(int i=0;i<listaObjetoVO.size();i++){

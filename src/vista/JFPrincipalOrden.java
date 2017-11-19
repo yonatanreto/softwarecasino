@@ -49,7 +49,7 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
         labelMover = new javax.swing.JLabel();
         jXPanel5 = new org.jdesktop.swingx.JXPanel();
-        txtApellido1 = new javax.swing.JTextField();
+        txtTipoDocumento = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -60,9 +60,9 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
         panelScroll = new javax.swing.JScrollPane();
         panelRestaurantes = new javax.swing.JPanel();
         txtDocumento = new javax.swing.JTextField();
-        txtDocumento1 = new javax.swing.JTextField();
         jSeparator9 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JPasswordField();
         labelTitulo = new javax.swing.JLabel();
 
         popupMenu.setBackground(new java.awt.Color(51, 204, 255));
@@ -242,37 +242,33 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
         labelMover.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
 
         jXPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jXPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtApellido1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtApellido1.setBorder(null);
-        txtApellido1.setMargin(new java.awt.Insets(10, 2, 0, 2));
-        txtApellido1.setName("Primer Apellido"); // NOI18N
-        txtApellido1.addActionListener(new java.awt.event.ActionListener() {
+        txtTipoDocumento.setEditable(false);
+        txtTipoDocumento.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipoDocumento.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtTipoDocumento.setBorder(null);
+        txtTipoDocumento.setMargin(new java.awt.Insets(10, 2, 0, 2));
+        txtTipoDocumento.setName("Primer Apellido"); // NOI18N
+        txtTipoDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellido1ActionPerformed(evt);
+                txtTipoDocumentoActionPerformed(evt);
             }
         });
-        jXPanel5.add(txtApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 139, 40, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel4.setText("TD");
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
-        jXPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 30, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel5.setText("Nombre completo");
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
-        jXPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 150, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
         jLabel6.setText("Documento");
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jXPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 100, -1, 30));
-        jXPanel5.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 171, 410, 10));
 
         txtNombreCompleto.setEditable(false);
         txtNombreCompleto.setBackground(new java.awt.Color(255, 255, 255));
@@ -285,17 +281,12 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
                 txtNombreCompletoActionPerformed(evt);
             }
         });
-        jXPanel5.add(txtNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 139, 410, 30));
-        jXPanel5.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 171, 40, 10));
-        jXPanel5.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 171, 160, 10));
 
         panelScroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         panelRestaurantes.setBackground(new java.awt.Color(248, 248, 248));
         panelRestaurantes.setLayout(null);
         panelScroll.setViewportView(panelRestaurantes);
-
-        jXPanel5.add(panelScroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 880, 330));
 
         txtDocumento.setEditable(false);
         txtDocumento.setBackground(new java.awt.Color(255, 255, 255));
@@ -308,27 +299,88 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
                 txtDocumentoActionPerformed(evt);
             }
         });
-        jXPanel5.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 139, 160, 30));
-
-        txtDocumento1.setEditable(false);
-        txtDocumento1.setBackground(new java.awt.Color(255, 255, 255));
-        txtDocumento1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtDocumento1.setBorder(null);
-        txtDocumento1.setMargin(new java.awt.Insets(10, 2, 0, 2));
-        txtDocumento1.setName("usuario"); // NOI18N
-        txtDocumento1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumento1ActionPerformed(evt);
-            }
-        });
-        jXPanel5.add(txtDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 49, 220, 30));
-        jXPanel5.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 81, 220, 10));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("Código de empleado");
-        jXPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 10, -1, 30));
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+
+        txtCodigo.setBorder(null);
+        txtCodigo.setName("codigo"); // NOI18N
+
+        javax.swing.GroupLayout jXPanel5Layout = new javax.swing.GroupLayout(jXPanel5);
+        jXPanel5.setLayout(jXPanel5Layout);
+        jXPanel5Layout.setHorizontalGroup(
+            jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jXPanel5Layout.createSequentialGroup()
+                .addGroup(jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel7))
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel6)
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txtTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jXPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelScroll)
+                .addContainerGap())
+        );
+        jXPanel5Layout.setVerticalGroup(
+            jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jXPanel5Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addGroup(jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jXPanel5Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))))
+                .addGap(9, 9, 9)
+                .addGroup(jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addGroup(jXPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(panelScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
         labelTitulo.setFont(new java.awt.Font("Calibri Light", 0, 30)); // NOI18N
@@ -344,7 +396,7 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
                 .addComponent(labelMover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jXPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jXPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
+            .addComponent(jXPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jXPanel3Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,7 +411,7 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jXPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addComponent(jXPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 
@@ -396,9 +448,9 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListaOrdenesActionPerformed
 
-    private void txtApellido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellido1ActionPerformed
+    private void txtTipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoDocumentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellido1ActionPerformed
+    }//GEN-LAST:event_txtTipoDocumentoActionPerformed
 
     private void txtNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompletoActionPerformed
         // TODO add your handling code here:
@@ -407,10 +459,6 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
     private void txtDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDocumentoActionPerformed
-
-    private void txtDocumento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumento1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumento1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -445,10 +493,10 @@ public class JFPrincipalOrden extends javax.swing.JFrame {
     public javax.swing.JPanel panelRestaurantes;
     public javax.swing.JScrollPane panelScroll;
     public javax.swing.JPopupMenu popupMenu;
-    public javax.swing.JTextField txtApellido1;
+    public javax.swing.JPasswordField txtCodigo;
     public javax.swing.JTextField txtDocumento;
-    public javax.swing.JTextField txtDocumento1;
     public javax.swing.JTextField txtNombreCompleto;
+    public javax.swing.JTextField txtTipoDocumento;
     // End of variables declaration//GEN-END:variables
 
 }

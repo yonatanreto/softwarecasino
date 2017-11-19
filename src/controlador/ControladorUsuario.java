@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import com.nextic.filtercomponent.components.AbstractCodigo;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +23,12 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import modelo.Conexion;
 import modelo.dao.PermisosDAO;
+import modelo.dao.RestaurantesDAO;
 import modelo.dao.UsuariosDAO;
 import modelo.dao.exceptions.NonexistentEntityException;
 import modelo.logica.LogicaGeneral;
 import modelo.vo.Permisos;
+import modelo.vo.Restaurantes;
 import modelo.vo.Usuarios;
 
 import vista.JFUsuario;
@@ -78,6 +81,9 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
           ControladorGeneral.inicializar(vistaVO,"Usuario");
           this.vistaVO.btnAtras.setVisible(false);
           this.vistaVO.btnSiguiente.setVisible(false);
+          this.vistaVO.labelMover.setVisible(false);
+          this.vistaVO.jfcRestaurante.setVisible(false);
+          llenarFilterComponents();
           
          
           //Aqui asigno que solo se permitan 10 caracteres en los campos
@@ -94,18 +100,29 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
         
          
       }
+     public void llenarFilterComponents(){
+
+          RestaurantesDAO   modeloCargo= new  RestaurantesDAO(Conexion.f);         
+          vistaVO.jfcRestaurante.llenar_filter(modeloCargo.findRestaurantesEntities());
+          
     
+    
+    }
     public void llenarDatosObjetoVO(){
             vistaVO.txtUsuario.setText(objetoVO.getUsuario());
             vistaVO.txtContraseña.setText(objetoVO.getClave());
             vistaVO.txtConfirmarContraseña.setText(objetoVO.getClave());
             vistaVO.comboTipo.setSelectedItem(objetoVO.getTipo());
+            mostrarRestaurantes();
             visualizacionBotonesSiguienteAtras();
             cargarPermisos();
+            if(((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("RESTAURANTE")){
+                this.vistaVO.jfcRestaurante.setDato(objetoVO.getRestaurante());
+             }
      }
       
     public void visualizacionBotonesSiguienteAtras(){
-      if(((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("LIMITADO")){
+      if(((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("LIMITADO")||((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("RESTAURANTE")){
          this.vistaVO.btnSiguiente.setVisible(true);
       }else{
          this.vistaVO.btnSiguiente.setVisible(false);
@@ -228,6 +245,13 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
         usuario.setUsuario(vistaVO.txtUsuario.getText());
         usuario.setClave(vistaVO.txtContraseña.getText());    
         usuario.setTipo((String) vistaVO.comboTipo.getSelectedItem());  
+        if(((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("RESTAURANTE")){
+            
+              objetoVO.setRestaurante((Restaurantes) this.vistaVO.jfcRestaurante.getDato());
+        }else{
+            objetoVO.setRestaurante(null);
+        
+        }
     }
     
 
@@ -302,6 +326,7 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
         }
           if(e.getSource()==vistaVO.comboTipo){             
                visualizacionBotonesSiguienteAtras();
+               mostrarRestaurantes();
         }
           
 
@@ -314,6 +339,18 @@ public class ControladorUsuario implements ActionListener,InternalFrameListener,
         
     }
     
+    public void mostrarRestaurantes(){
+        
+        if(((String)vistaVO.comboTipo.getSelectedItem()).equalsIgnoreCase("RESTAURANTE")){
+              this.vistaVO.labelMover.setVisible(true);
+              this.vistaVO.jfcRestaurante.setVisible(true);
+        }else{
+            this.vistaVO.labelMover.setVisible(false);
+          this.vistaVO.jfcRestaurante.setVisible(false);
+        
+        }
+    
+    }
     
     @Override
     public void internalFrameOpened(InternalFrameEvent e) {

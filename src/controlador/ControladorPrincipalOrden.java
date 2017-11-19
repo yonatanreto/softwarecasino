@@ -22,20 +22,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.event.InternalFrameEvent;
-import javax.swing.event.InternalFrameListener;
+import javax.swing.JOptionPane;
 import modelo.Conexion;
 import modelo.dao.ConfiguracionImpresionOrdenDAO;
 import modelo.dao.EmpleadosDAO;
 import modelo.dao.OrdenesDAO;
 import modelo.dao.RestaurantesDAO;
+import modelo.dao.UsuariosDAO;
 import modelo.logica.LogicaGeneral;
 import modelo.reportes.ModeloReportes;
 import modelo.vo.ConfiguracionImpresionOrden;
 import modelo.vo.Empleados;
 import modelo.vo.Ordenes;
 import modelo.vo.Restaurantes;
-import vista.JFOrden;
+import vista.JFPrincipalOrden;
 
 
 
@@ -45,8 +45,8 @@ import vista.JFOrden;
  *
  * @author Usuario
  */
-public class ControladorOrden implements ActionListener,InternalFrameListener,MouseListener,MouseMotionListener,KeyListener{
-        JFOrden vistaVO;
+public class ControladorPrincipalOrden implements ActionListener,MouseListener,MouseMotionListener,KeyListener{
+        JFPrincipalOrden vistaVO;
         OrdenesDAO modeloDAO; 
         Ordenes objetoVO;
         String acción="";
@@ -55,14 +55,19 @@ public class ControladorOrden implements ActionListener,InternalFrameListener,Mo
         HashMap mapRestaurantes=new HashMap();
         ArrayList<JButton> listaBotones=new ArrayList<>();
         Restaurantes restaurante=null;
+        EmpleadosDAO   empleadoDAO;
+        Empleados empleadoVO;
+        UsuariosDAO modeloUsuariosDAO; 
            
 
-    public ControladorOrden(JFOrden vistaVO) {
+    public ControladorPrincipalOrden(JFPrincipalOrden vistaVO) {
        
         this.vistaVO = vistaVO;
+        
          
         this.modeloDAO = new OrdenesDAO(Conexion.f);
-//        this.vistaVO.btnGuardar.addActionListener(this);
+         empleadoDAO=new  EmpleadosDAO(Conexion.f); 
+         modeloUsuariosDAO = new UsuariosDAO(Conexion.f); 
         
         
             
@@ -70,36 +75,34 @@ public class ControladorOrden implements ActionListener,InternalFrameListener,Mo
             
             this.vistaVO.btnCerrar.addActionListener(this);
             this.vistaVO.btnMinimizar.addActionListener(this);
+            this.vistaVO.btnMaximizar.addActionListener(this);
+            this.vistaVO.txtCodigo.addActionListener(this);
             this.vistaVO.labelMover.addMouseMotionListener(this);
             this.vistaVO.labelMover.addMouseListener(this);
-            
+            inicializar();
       
     }
     
     
     //Este metodo inicializa la vista de Usuario configurando algunas caracteristicas propias
     public void inicializar(){
-          ((javax.swing.plaf.basic.BasicInternalFrameUI)vistaVO.getUI()).setNorthPane(null);
-          ControladorGeneral.inicializar(vistaVO,"Empleado");
-          
+          cargarUsuarioDelSistema();
+           vistaVO.popupMenu.add(vistaVO.panelMenu);           
+           vistaVO.setExtendedState(vistaVO.MAXIMIZED_BOTH);
          
-          //Aqui asigno que solo se permitan 50 caracteres en los campos
-          
-          vistaVO.jfcEmpleado.setAuxiliar_component(vistaVO.txtNombreCompleto);
-//          vistaVO.jfcEmpleado.setNext_component(vistaVO.btnGuardar);
-          llenarFilterComponents();
-          crearBotonesRestaurantes();
+         
+           crearBotonesRestaurantes();
+           vistaVO.setVisible(true);
          
          
       }
     
-    public void llenarFilterComponents(){
-
-          EmpleadosDAO   empleado= new  EmpleadosDAO(Conexion.f);         
-          vistaVO.jfcEmpleado.llenar_filter(empleado.findEmpleadosEntities());
-          
-    
-    
+  public void cargarUsuarioDelSistema(){
+       ControladorPrincipal.usuario=modeloUsuariosDAO.getUsuario("default","usuario");
+            if(ControladorPrincipal.usuario==null){
+               JOptionPane.showMessageDialog(null,"Es necesario configurar el usuario del sistema","ERROR",JOptionPane.ERROR_MESSAGE);
+               ControladorGeneral.salirAplicación();
+            }
     }
     
  public void crearBotonesRestaurantes(){
@@ -200,58 +203,70 @@ public void configuraciónBotones(JButton boton,int columna){
             try {
                 ConfiguracionImpresionOrdenDAO.editarStatic(objetoVoConfiguracion);
             } catch (Exception ex) {
-                Logger.getLogger(ControladorOrden.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControladorPrincipalOrden.class.getName()).log(Level.SEVERE, null, ex);
             }
-        modeloDAO.crear(objetoVO);
-        
+        modeloDAO.crear(objetoVO);        
         ModeloReportes modeloReportes = new ModeloReportes();
         modeloReportes.imprimirOrdenTicket(objetoVO, objetoVoConfiguracion);
-
-//        ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje(mensaje));
-//        ControladorGeneral.salirVista("FormularioOrden", vistaVO);
+        ControladorGeneral.vaciarCampos(vistaVO.txtDocumento,vistaVO.txtNombreCompleto,vistaVO.txtTipoDocumento,vistaVO.txtCodigo);
+        vistaVO.txtCodigo.requestFocus();
+       
     }
     
     //Prepara el objeta para  ser guardado o editado
     public void prepararObjeto(Ordenes objetoVO,Restaurantes restaurante){
-        objetoVO.setEmpleado((Empleados) vistaVO.jfcEmpleado.getDato());
+        objetoVO.setEmpleado(empleadoVO);
         objetoVO.setRestaurante(restaurante);
         objetoVO.setEstado(0);
         objetoVO.setFecha(new Date());
         objetoVO.setHora(new Date());
-        objetoVO.setUsuario(ControladorPrincipal.usuario);
-       
-        
-       
+        objetoVO.setUsuario(ControladorPrincipal.usuario);   
        
     }
     
+    public void llenarDatosEmpleado(){
+       vistaVO.txtDocumento.setText(empleadoVO.getCedula());
+       vistaVO.txtTipoDocumento.setText(empleadoVO.getTipoDocumento());
+       vistaVO.txtNombreCompleto.setText(empleadoVO.toString());
+    
+    }
 
        //Valida que los campos no esten vacíos 
         public boolean validar(){
             String respuesta="";
-        if(vistaVO.jfcEmpleado.getDato()==null){
-                ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CampoVacio")+" "+"Empleado");
-                vistaVO.jfcEmpleado.filter_campo.requestFocus();
+            
+         if(!(respuesta=ControladorGeneral.validarTxtVacios(vistaVO.txtCodigo
+                 )).equalsIgnoreCase("OK")){
                 return false;
-        }
-         //CANTIDAD DE ORDENES GENERADAS EN EL MES
-           Empleados empleado =(Empleados) vistaVO.jfcEmpleado.getDato();
-        Calendar ca=Calendar.getInstance();
-        ca.set(Calendar.DAY_OF_MONTH, 1);
-        int cantidad=modeloDAO.findOrdenesEntitiesPorFechasEmpleado(ca.getTime(),new Date(), empleado); 
-        if(cantidad>=empleado.getCupoOrdenes()){
-            ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CantidadMayor")+" "+empleado.getCupoOrdenes()+" ordenes mensuales");
-            vistaVO.jfcEmpleado.filter_campo.requestFocus();
-            return false;
-
-        }
-      
-        List<Ordenes> listaOrdenes= modeloDAO.findOrdenesEntitiesPorFechaEmpleado(new Date(), empleado);
-        if(listaOrdenes.size()>0){
-            ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("RegistroEnFecha")+" "+"para este Empleado , Cant:"+listaOrdenes.size());
-            vistaVO.jfcEmpleado.filter_campo.requestFocus();
-            return false;
-        }
+        }else{
+            
+                if(empleadoVO==null){
+                        ControladorGeneral.vaciarCampos(vistaVO.txtDocumento,vistaVO.txtNombreCompleto,vistaVO.txtTipoDocumento);
+                        ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CodigoInvalido"));
+                        vistaVO.txtCodigo.requestFocus();
+                        return false;
+                }else{
+                        //CANTIDAD DE ORDENES GENERADAS EN EL MES
+                        Calendar ca=Calendar.getInstance();
+                        ca.set(Calendar.DAY_OF_MONTH, 1);
+                        int cantidad=modeloDAO.findOrdenesEntitiesPorFechasEmpleado(ca.getTime(),new Date(), empleadoVO); 
+                        if(cantidad>=empleadoVO.getCupoOrdenes()){
+                            ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CantidadMayor")+" "+empleadoVO.getCupoOrdenes()+" ordenes mensuales");
+                             ControladorGeneral.vaciarCampos(vistaVO.txtDocumento,vistaVO.txtNombreCompleto,vistaVO.txtTipoDocumento,vistaVO.txtCodigo);
+                            vistaVO.txtCodigo.requestFocus();
+                        
+                        }else{
+                            List<Ordenes> listaOrdenes= modeloDAO.findOrdenesEntitiesPorFechaEmpleado(new Date(), empleadoVO);
+                            if(listaOrdenes.size()>0){
+                                 ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("RegistroEnFecha")+" "+"para este Empleado , Cant:"+listaOrdenes.size());
+                                 ControladorGeneral.vaciarCampos(vistaVO.txtDocumento,vistaVO.txtNombreCompleto,vistaVO.txtTipoDocumento,vistaVO.txtCodigo);
+                                 vistaVO.txtCodigo.requestFocus();
+                                return false;
+                            }
+                        }
+                        
+                }
+         }
         
         return true;
     }
@@ -272,57 +287,40 @@ public void configuraciónBotones(JButton boton,int columna){
 
         
         if(e.getSource()==vistaVO.btnCerrar){
-                  ControladorGeneral.salirVista("FormularioOrden", vistaVO);
-               
-            }
+         ControladorGeneral.salirAplicación();
+      } 
         
        
                      
-        if(e.getSource()==vistaVO.btnMinimizar){
-           ControladorGeneral.eventoMinimizarVistas(vistaVO);
-        }
         
+      //Evento Minimizar
+       if(e.getSource()==vistaVO.btnMinimizar){
+             ControladorGeneral.eventoMaximizarMinimizarPrincipal(vistaVO, "Minimizar");
+      } 
+        //Evento Maximizar
+      if(e.getSource()==vistaVO.btnMaximizar){
+          System.out.println("Entro evento Maximinzar");
+               ControladorGeneral.eventoMaximizarMinimizarPrincipal(vistaVO, "Maximizar");
+      } 
+      
+      
+         //Evento Maximizar
+      if(e.getSource()==vistaVO.txtCodigo){
+            Empleados empleado= this.empleadoDAO.getEmpleadoCódigo(vistaVO.txtCodigo.getText().trim());
+            if(empleado==null){
+                ControladorGeneral.vaciarCampos(vistaVO.txtDocumento,vistaVO.txtNombreCompleto,vistaVO.txtTipoDocumento,vistaVO.txtCodigo);
+                ControladorGeneral.mostrarMensaje(null, LogicaGeneral.getMensaje("CodigoInvalido"));
+            }else{
+                this.empleadoVO=empleado;
+                llenarDatosEmpleado();
+            }
+      } 
        
         
         
     }
     
-    
-    @Override
-    public void internalFrameOpened(InternalFrameEvent e) {
-        
-    }
-
-    @Override
-    public void internalFrameClosing(InternalFrameEvent e) {
-        
-    }
-
-    @Override
-    public void internalFrameClosed(InternalFrameEvent e) {
-        ControladorGeneral.salirVista("FormularioOrden", vistaVO);
-    }
-
-    @Override
-    public void internalFrameIconified(InternalFrameEvent e) {
-        
-    }
-
-    @Override
-    public void internalFrameDeiconified(InternalFrameEvent e) {
-       
-    }
-
-    @Override
-    public void internalFrameActivated(InternalFrameEvent e) {
-       
-    }
-
-    @Override
-    public void internalFrameDeactivated(InternalFrameEvent e) {
-        
-    }
-
+ 
     @Override
     public void mouseClicked(MouseEvent e) {
       

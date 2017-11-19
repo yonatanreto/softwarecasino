@@ -49,6 +49,8 @@ public class JFUsuario extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jfcRestaurante = new com.nextic.filtercomponent.components.JFilterComponent2();
+        labelRestaurante = new javax.swing.JLabel();
         panelPermisos = new org.jdesktop.swingx.JXPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
@@ -59,6 +61,7 @@ public class JFUsuario extends javax.swing.JInternalFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jCheckBox8 = new javax.swing.JCheckBox();
         btnSiguiente = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
 
@@ -162,10 +165,10 @@ public class JFUsuario extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         panelDatos.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 258, 96, 20));
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "LIMITADO" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "LIMITADO", "RESTAURANTE" }));
         comboTipo.setFocusCycleRoot(true);
         comboTipo.setForeground(new java.awt.Color(102, 102, 102));
-        panelDatos.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 284, 203, 30));
+        panelDatos.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 284, 160, 30));
 
         txtConfirmarContraseña.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtConfirmarContraseña.setBorder(null);
@@ -184,6 +187,13 @@ public class JFUsuario extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         panelDatos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 15, -1, 20));
         panelDatos.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 157, 355, 10));
+        panelDatos.add(jfcRestaurante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 284, 160, 30));
+
+        labelRestaurante.setBackground(new java.awt.Color(255, 255, 255));
+        labelRestaurante.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        labelRestaurante.setText("Restaurante");
+        labelRestaurante.setForeground(new java.awt.Color(153, 153, 153));
+        panelDatos.add(labelRestaurante, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 258, 150, 20));
 
         jXPanel2.add(panelDatos, "card2");
 
@@ -236,6 +246,12 @@ public class JFUsuario extends javax.swing.JInternalFrame {
         jLabel5.setText("Permisos");
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
 
+        jCheckBox8.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox8.setFont(new java.awt.Font("Calibri", 0, 16)); // NOI18N
+        jCheckBox8.setText("Entrega de orden");
+        jCheckBox8.setForeground(new java.awt.Color(153, 153, 153));
+        jCheckBox8.setName("Entrega de orden"); // NOI18N
+
         javax.swing.GroupLayout panelPermisosLayout = new javax.swing.GroupLayout(panelPermisos);
         panelPermisos.setLayout(panelPermisosLayout);
         panelPermisosLayout.setHorizontalGroup(
@@ -243,6 +259,7 @@ public class JFUsuario extends javax.swing.JInternalFrame {
             .addGroup(panelPermisosLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(panelPermisosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox8)
                     .addComponent(jLabel5)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2)
@@ -274,8 +291,10 @@ public class JFUsuario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox5)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jXPanel2.add(panelPermisos, "card3");
@@ -343,6 +362,7 @@ public class JFUsuario extends javax.swing.JInternalFrame {
     public javax.swing.JCheckBox jCheckBox5;
     public javax.swing.JCheckBox jCheckBox6;
     public javax.swing.JCheckBox jCheckBox7;
+    public javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -357,7 +377,9 @@ public class JFUsuario extends javax.swing.JInternalFrame {
     public org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
     private org.jdesktop.swingx.JXPanel jXPanel4;
+    public com.nextic.filtercomponent.components.JFilterComponent2 jfcRestaurante;
     public javax.swing.JLabel labelMover;
+    private javax.swing.JLabel labelRestaurante;
     private javax.swing.JLabel labelTitulo;
     private org.jdesktop.swingx.JXPanel panelDatos;
     public org.jdesktop.swingx.JXPanel panelPermisos;

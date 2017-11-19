@@ -273,7 +273,12 @@ public class ControladorGeneral {
      public static void eventoMaximizarMinimizarPrincipal(JFrame vista,String acción){
 
          if(acción.equalsIgnoreCase("Maximizar")){
-            vista.setExtendedState(JFrame.MAXIMIZED_BOTH);
+             if(vista.getExtendedState()!=JFrame.MAXIMIZED_BOTH){
+               vista.setExtendedState(JFrame.MAXIMIZED_BOTH);
+             }else{
+               vista.setExtendedState(JFrame.NORMAL);
+             
+             }
          }else{
              if(acción.equalsIgnoreCase("Minimizar")){
                vista.setExtendedState(JFrame.ICONIFIED);

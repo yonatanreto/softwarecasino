@@ -5,6 +5,7 @@
  */
 package modelo.vo;
 
+import com.nextic.filtercomponent.components.AbstractCodigo;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Restaurantes.findById", query = "SELECT r FROM Restaurantes r WHERE r.id = :id")
     , @NamedQuery(name = "Restaurantes.findByNombre", query = "SELECT r FROM Restaurantes r WHERE r.nombre = :nombre")
     , @NamedQuery(name = "Restaurantes.findByNit", query = "SELECT r FROM Restaurantes r WHERE r.nit = :nit")})
-public class Restaurantes implements Serializable {
+public class Restaurantes implements Serializable,AbstractCodigo {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -104,6 +105,16 @@ public class Restaurantes implements Serializable {
     @Override
     public String toString() {
         return "modelo.vo.Restaurantes[ id=" + id + " ]";
+    }
+
+    @Override
+    public String getCodigo_abs() {
+        return nit;
+    }
+
+    @Override
+    public String getNombre_abs() {
+        return this.nombre;
     }
     
 }

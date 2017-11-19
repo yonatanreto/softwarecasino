@@ -18,6 +18,7 @@ import modelo.dao.OrdenesDAO;
 import modelo.dao.PermisosDAO;
 import modelo.vo.Permisos;
 import modelo.vo.Usuarios;
+import vista.JFEntregaOrden;
 import vista.JFListaAreaDeTrabajos;
 import vista.JFListaCargos;
 import vista.JFListaEmpleados;
@@ -59,6 +60,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
         this.vistaPrincipal.btnCargo.addActionListener(this); 
         this.vistaPrincipal.btnAreaDeTrabajo.addActionListener(this); 
         this.vistaPrincipal.btnOrdenes.addActionListener(this); 
+        this.vistaPrincipal.btnEntregarOrdenes.addActionListener(this); 
         this.vistaPrincipal.btnListaOrdenes.addActionListener(this); 
         
         
@@ -103,6 +105,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
                 if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Ordenes")){
                     vistaPrincipal.btnOrdenes.setVisible(true);
                 }
+                
+                 if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("Entrega de orden")){
+                     vistaPrincipal.btnEntregarOrdenes.setVisible(true);
+                }
                 if(listaPermisos_guardados.get(i).getNombrePermiso().equalsIgnoreCase("area de trabajo")){
                     vistaPrincipal.btnAreaDeTrabajo.setVisible(true);
                 }
@@ -120,10 +126,13 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
     }
     
     public void ocultarSesionUsuario(){
-     vistaPrincipal.btnUsuarios.setVisible(false);
+    
      vistaPrincipal.btnEmpleados.setVisible(false);
      vistaPrincipal.btnRestaurantes.setVisible(false);
      vistaPrincipal.btnOrdenes.setVisible(false);
+     vistaPrincipal.btnEntregarOrdenes.setVisible(false);
+     vistaPrincipal.btnUsuarios.setVisible(false);
+     
      vistaPrincipal.btnCargo.setVisible(false);
      vistaPrincipal.btnAreaDeTrabajo.setVisible(false);
      vistaPrincipal.btnListaOrdenes.setVisible(false); 
@@ -136,19 +145,15 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
     public void actionPerformed(ActionEvent e) {
         
        //Aqui se agrega el código de acción al boton empleados
-      if(e.getSource()==vistaPrincipal.btnUsuarios){
-         
+      if(e.getSource()==vistaPrincipal.btnUsuarios){         
           //Valido si la vista esta en el hasMap , si no agrego la clave y la registro para validar 
             if(ControladorGeneral.vistas.get("ListaUsuarios")==null){
                     JFListaUsuario vistaLista= new JFListaUsuario();
                      
                     ControladorListaUsuario controladorLista =new ControladorListaUsuario(vistaLista);
                     ControladorPrincipal.dp.add(vistaLista);
-                    ControladorGeneral.vistas.put("ListaUsuarios",controladorLista);
-                    
-                   
-               }
-             
+                    ControladorGeneral.vistas.put("ListaUsuarios",controladorLista);                  
+               }             
       } 
         
        
@@ -228,6 +233,19 @@ public class ControladorPrincipal implements ActionListener, MouseListener,Mouse
                     ControladorPrincipal.dp.add(vistaVO);
                     ControladorGeneral.vistas.put("FormularioOrden",controladorObjetoVO);      
                     vistaVO.jfcEmpleado.filter_campo.requestFocus();
+                   
+               }
+      } 
+        
+         if(e.getSource()==vistaPrincipal.btnEntregarOrdenes){
+           //Valido si la vista esta en el hasMap , si no agrego la clave y la registro para validar 
+            if(ControladorGeneral.vistas.get("FormularioEntregaOrden")==null){
+                    JFEntregaOrden vistaVO= new JFEntregaOrden();               
+                    ControladorEntregaOrden controladorObjetoVO =new ControladorEntregaOrden(vistaVO);
+                    controladorObjetoVO.inicializar();
+                    ControladorPrincipal.dp.add(vistaVO);
+                    ControladorGeneral.vistas.put("FormularioEntregaOrden",controladorObjetoVO);      
+                    vistaVO.txtNumeroOrden.requestFocus();
                    
                }
       } 

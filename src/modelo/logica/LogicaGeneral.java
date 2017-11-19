@@ -33,6 +33,10 @@ public class LogicaGeneral {
            mensajes.put("NoDatosFechas","No hay registros relacionados a las fechas ingresadas");
            mensajes.put("NoConexion","Error de conexión");
            mensajes.put("RegistroEnFecha","Ya existen registros en la fecha indicada");
+           mensajes.put("RegistroEnFecha","Ya existen registros en la fecha indicada");
+           mensajes.put("CantidadMayor","La cantidad de registros no puede ser mayor a");
+           mensajes.put("CodigoInvalido","El código ingresado no es válido");
+           mensajes.put("RegistroNoEcontrado","No se ha encontrado un registro asociado al dato ingresado");
            
        
        }

@@ -58,6 +58,8 @@ public class JFPrincipal extends javax.swing.JFrame {
         btnRestaurantes = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnOrdenes = new javax.swing.JButton();
+        btnEntregarOrdenes = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         popupMenu.setBackground(new java.awt.Color(51, 204, 255));
         popupMenu.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -393,30 +395,50 @@ public class JFPrincipal extends javax.swing.JFrame {
         btnOrdenes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ordenRollOver.png"))); // NOI18N
         btnOrdenes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btnEntregarOrdenes.setBackground(new java.awt.Color(255, 255, 255));
+        btnEntregarOrdenes.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEntregarOrdenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/allow_list.png"))); // NOI18N
+        btnEntregarOrdenes.setText("Entrega");
+        btnEntregarOrdenes.setBorder(null);
+        btnEntregarOrdenes.setContentAreaFilled(false);
+        btnEntregarOrdenes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEntregarOrdenes.setFocusable(false);
+        btnEntregarOrdenes.setForeground(new java.awt.Color(255, 255, 255));
+        btnEntregarOrdenes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEntregarOrdenes.setIconTextGap(5);
+        btnEntregarOrdenes.setMargin(new java.awt.Insets(10, 5, 7, 5));
+        btnEntregarOrdenes.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/allow_list_rollover.png"))); // NOI18N
+        btnEntregarOrdenes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jXPanel2Layout = new javax.swing.GroupLayout(jXPanel2);
         jXPanel2.setLayout(jXPanel2Layout);
         jXPanel2Layout.setHorizontalGroup(
             jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jXPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEmpleados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEntregarOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(358, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jXPanel2Layout.setVerticalGroup(
             jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+            .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(btnRestaurantes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(btnOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(btnEntregarOrdenes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
         );
 
         jXPanel1.add(jXPanel2);
@@ -470,6 +492,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnCargo;
     public javax.swing.JButton btnCerrar;
     public javax.swing.JButton btnEmpleados;
+    public javax.swing.JButton btnEntregarOrdenes;
     public javax.swing.JButton btnListaOrdenes;
     public javax.swing.JButton btnMaximizar;
     public javax.swing.JButton btnMenu;
@@ -480,6 +503,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton btnUsuarios;
     public javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
