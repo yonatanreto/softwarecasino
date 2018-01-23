@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteListaOrdenes" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="552" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="29" uuid="2ab52a24-e86f-4c1e-bf6c-14b081996efa">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="2.000000000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fechaInicial" class="java.util.Date"/>
 	<parameter name="fechaFinal" class="java.util.Date"/>
+	<parameter name="numeroDeRegistros" class="java.lang.String"/>
 	<field name="No Orden" class="java.lang.String"/>
 	<field name="Restaurante" class="java.lang.String"/>
 	<field name="Empleado" class="java.lang.String"/>
 	<field name="Fecha" class="java.lang.String"/>
 	<field name="Hora" class="java.lang.String"/>
+	<field name="Estado" class="java.lang.String"/>
 	<pageHeader>
 		<band height="84" splitType="Stretch">
 			<rectangle radius="4">
@@ -38,7 +40,7 @@
 				<text><![CDATA[LISTADO DE ORDENES A RESTAURANTES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="54" y="65" width="193" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="9749bd61-6086-4b73-829e-e36397a25907"/>
+				<reportElement key="staticText" positionType="Float" x="56" y="65" width="168" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="9749bd61-6086-4b73-829e-e36397a25907"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -51,7 +53,7 @@
 				<text><![CDATA[Restaurante]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" mode="Transparent" x="252" y="65" width="180" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="cd72c20a-f1d1-423a-9aba-b93226a7174e"/>
+				<reportElement key="staticText" positionType="Float" mode="Transparent" x="228" y="65" width="170" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="cd72c20a-f1d1-423a-9aba-b93226a7174e"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -64,7 +66,7 @@
 				<text><![CDATA[Empleado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="434" y="65" width="59" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="d8f74720-2595-401c-991a-4b7ceb4498e4"/>
+				<reportElement key="staticText" positionType="Float" x="401" y="65" width="48" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="d8f74720-2595-401c-991a-4b7ceb4498e4"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -77,19 +79,19 @@
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<line>
-				<reportElement x="493" y="64" width="1" height="19" uuid="92ca195d-9758-4e39-84f0-03e8fd7697a8"/>
+				<reportElement x="449" y="64" width="1" height="19" uuid="92ca195d-9758-4e39-84f0-03e8fd7697a8"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="248" y="64" width="1" height="19" uuid="907df2b2-5b93-4011-93dc-114643359d81"/>
+				<reportElement x="224" y="64" width="1" height="19" uuid="907df2b2-5b93-4011-93dc-114643359d81"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="3" y="65" width="48" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ff69d80d-e8ab-4a04-851f-5d694cfae418"/>
+				<reportElement key="staticText" positionType="Float" x="3" y="65" width="52" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ff69d80d-e8ab-4a04-851f-5d694cfae418"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -102,19 +104,19 @@
 				<text><![CDATA[No Orden]]></text>
 			</staticText>
 			<line>
-				<reportElement x="53" y="64" width="1" height="19" uuid="f02a76c7-4528-46f5-8fc8-b203aa6d7e2b"/>
+				<reportElement x="55" y="64" width="1" height="19" uuid="f02a76c7-4528-46f5-8fc8-b203aa6d7e2b"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="431" y="64" width="1" height="19" uuid="abb24c78-48fd-48d5-b5c0-0eab5ad7d819"/>
+				<reportElement x="398" y="64" width="1" height="19" uuid="abb24c78-48fd-48d5-b5c0-0eab5ad7d819"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="495" y="65" width="57" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ea30bf5c-953a-42db-8d2f-ddd722e53233"/>
+				<reportElement key="staticText" positionType="Float" x="451" y="65" width="40" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="ea30bf5c-953a-42db-8d2f-ddd722e53233"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -127,14 +129,14 @@
 				<text><![CDATA[Hora]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="225" y="33" width="63" height="17" uuid="35f2d7b8-4d5a-4ff8-8ebc-015658136f0c"/>
+				<reportElement x="164" y="33" width="63" height="17" uuid="35f2d7b8-4d5a-4ff8-8ebc-015658136f0c"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaInicial}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="182" y="33" width="43" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="c327c036-bbca-4c2b-94e9-322a23e7c7ad"/>
+				<reportElement key="staticText" positionType="Float" x="121" y="33" width="43" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="c327c036-bbca-4c2b-94e9-322a23e7c7ad"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -147,7 +149,7 @@
 				<text><![CDATA[Desde ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="staticText" positionType="Float" x="288" y="33" width="43" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="e3454692-97e0-4c09-b2a9-417361ae75ab"/>
+				<reportElement key="staticText" positionType="Float" x="227" y="33" width="43" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="e3454692-97e0-4c09-b2a9-417361ae75ab"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -160,11 +162,37 @@
 				<text><![CDATA[Hasta]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="331" y="33" width="84" height="17" uuid="e65b1688-08fc-48a5-b32f-7c2d12664e87"/>
+				<reportElement x="270" y="33" width="84" height="17" uuid="e65b1688-08fc-48a5-b32f-7c2d12664e87"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{fechaFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" positionType="Float" x="496" y="66" width="56" height="17" forecolor="#000000" backcolor="#FFFFFF" uuid="7092060e-d6b9-4a1d-9de5-526fd292e3c2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="496" y="64" width="1" height="19" uuid="d4578c1f-eaae-4667-8ad5-2a38ed9a2833"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="354" y="33" width="137" height="17" uuid="b5074590-56e9-4ebe-aba9-f8e890dec931"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numeroDeRegistros}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -177,63 +205,76 @@
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="53" y="0" width="1" height="19" uuid="f81193e1-56f7-472c-a566-1f0ec1756b3f"/>
+				<reportElement x="55" y="0" width="1" height="19" uuid="f81193e1-56f7-472c-a566-1f0ec1756b3f"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="248" y="0" width="1" height="19" uuid="a5c839ca-ddea-45d0-826d-60944846f516"/>
+				<reportElement x="224" y="0" width="1" height="19" uuid="a5c839ca-ddea-45d0-826d-60944846f516"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="431" y="0" width="1" height="19" uuid="765ce150-9366-492f-bf34-ebca3aa3839d"/>
+				<reportElement x="398" y="0" width="1" height="19" uuid="765ce150-9366-492f-bf34-ebca3aa3839d"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="493" y="0" width="1" height="19" uuid="38bed630-7e0d-40b3-a1cb-7740e2bf5182"/>
+				<reportElement x="449" y="0" width="1" height="19" uuid="38bed630-7e0d-40b3-a1cb-7740e2bf5182"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#666666"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="57" y="0" width="191" height="19" uuid="68b7d26c-30dd-490f-ae75-774d5c65b7c5"/>
+				<reportElement x="59" y="1" width="165" height="17" uuid="68b7d26c-30dd-490f-ae75-774d5c65b7c5"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Restaurante}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="252" y="1" width="180" height="18" uuid="5b4c5db5-94dd-479e-a2ee-b8fc2e604773"/>
+				<reportElement x="228" y="1" width="170" height="17" uuid="5b4c5db5-94dd-479e-a2ee-b8fc2e604773"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="434" y="1" width="59" height="18" uuid="79d83cc3-0e67-45cc-98b2-e79ba800dd89"/>
+				<reportElement x="400" y="1" width="49" height="17" uuid="79d83cc3-0e67-45cc-98b2-e79ba800dd89"/>
 				<textElement>
-					<font fontName="Calibri"/>
+					<font fontName="Calibri" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="2" width="48" height="17" uuid="3464dcf1-92c4-4881-8182-f0b571a2c04e"/>
+				<reportElement x="3" y="1" width="52" height="17" uuid="3464dcf1-92c4-4881-8182-f0b571a2c04e"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{No Orden}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="495" y="1" width="57" height="17" uuid="9f6672c5-16bd-4962-b7eb-af5758cc49e9"/>
+				<reportElement x="451" y="1" width="45" height="17" uuid="9f6672c5-16bd-4962-b7eb-af5758cc49e9"/>
+				<textElement>
+					<font fontName="Calibri" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Hora}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="496" y="0" width="1" height="19" uuid="a4654763-f8ca-4f7d-ab62-48e4a3ec1da1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#666666"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0">
+				<reportElement x="498" y="1" width="54" height="17" uuid="925bbbeb-9629-4ea2-8a70-bf1e51e3dc3b"/>
 				<textElement>
 					<font fontName="Calibri"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Hora}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -52,9 +52,9 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         btnImprimirTicket = new javax.swing.JButton();
         txtNumeroRegistros = new javax.swing.JLabel();
 
+        setIconifiable(true);
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        setIconifiable(true);
 
         jXPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jXPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,11 +72,11 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "No Orden", "Restaurante", "Empleado", "Fecha", "Hora"
+                "No Orden", "Restaurante", "Empleado", "Fecha", "Hora", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,7 +119,7 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         jXPanel2.add(txtFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 155, 190, 30));
 
         comboFiltro.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Orden", "Restaurante", "Empleado" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Orden", "Restaurante", "Empleado", "Estado" }));
         comboFiltro.setFocusable(false);
         comboFiltro.setForeground(new java.awt.Color(102, 102, 102));
         jXPanel2.add(comboFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 155, 160, 30));
@@ -240,8 +240,8 @@ public class JFListaOrdenes extends javax.swing.JInternalFrame {
         jXPanel2.add(btnImprimirTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 501, 80, 80));
 
         txtNumeroRegistros.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
-        txtNumeroRegistros.setForeground(new java.awt.Color(102, 102, 102));
         txtNumeroRegistros.setText("No registros: 0");
+        txtNumeroRegistros.setForeground(new java.awt.Color(102, 102, 102));
         jXPanel2.add(txtNumeroRegistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 520, 260, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

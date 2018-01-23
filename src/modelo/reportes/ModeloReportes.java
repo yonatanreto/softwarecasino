@@ -63,7 +63,7 @@ public class ModeloReportes {
 
     }
       
-      public void imprimirListaOrdenes(DefaultTableModel modelo, Date fechaInicial, Date fechaFinal){
+      public void imprimirListaOrdenes(DefaultTableModel modelo, Date fechaInicial, Date fechaFinal,String numeroDeRegistros){
 		try{
 			
                         JasperReport jasperReport;
@@ -72,7 +72,8 @@ public class ModeloReportes {
                                               
 			jasperReport = (JasperReport)JRLoader.loadObject(getClass().getResource("reportListaOrdenes.jasper"));
                         parameters.put("fechaInicial",fechaInicial);
-                        parameters.put("fechaFinal",fechaFinal);                     
+                        parameters.put("fechaFinal",fechaFinal);   
+                        parameters.put("numeroDeRegistros",numeroDeRegistros);  
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,(JRDataSource)jrt);
                         JasperViewer.viewReport(jasperPrint,false);
 

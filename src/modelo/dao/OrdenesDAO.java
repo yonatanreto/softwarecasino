@@ -7,11 +7,15 @@ package modelo.dao;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.FlushModeType;
+import javax.persistence.SynchronizationType;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -20,6 +24,8 @@ import modelo.dao.exceptions.NonexistentEntityException;
 import modelo.vo.Empleados;
 import modelo.vo.Restaurantes;
 import modelo.vo.Ordenes;
+import org.eclipse.persistence.config.CacheUsage;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  *
@@ -35,6 +41,15 @@ public class OrdenesDAO implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+    
+//    public EntityManager getEntityManagerPersonalizado() {
+//        
+//        Map parameters = new HashMap();
+//        parameters.put("eclipselink.flush-clear.cache","Merge");
+//        EntityManager em= emf.createEntityManager(parameters);
+//        em.clear();
+//        return em;
+//    }
 
     public void crear(Ordenes ordenes) {
         EntityManager em = null;
@@ -146,7 +161,8 @@ public class OrdenesDAO implements Serializable {
             TypedQuery<Ordenes> q= em.createNamedQuery("Ordenes.findByFechaInicialFinal", Ordenes.class);           
             q.setParameter("fechaInicial",fechaInicial);
             q.setParameter("fechaFinal",fechaFinal);
-            
+            q.setHint(QueryHints.CACHE_USAGE,"DoNotCheckCache");
+           
             return q.getResultList();
         } finally {
             em.close();

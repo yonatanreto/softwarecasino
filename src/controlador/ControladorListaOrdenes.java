@@ -109,6 +109,7 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
          vistaLista.tabla.getColumnModel().getColumn(2).setPreferredWidth(220);
          vistaLista.tabla.getColumnModel().getColumn(3).setPreferredWidth(30);
          vistaLista.tabla.getColumnModel().getColumn(4).setPreferredWidth(10);
+         vistaLista.tabla.getColumnModel().getColumn(5).setPreferredWidth(30);
          
          select.addListSelectionListener(new ListSelectionListener() {
                 public void valueChanged(ListSelectionEvent e) {
@@ -154,12 +155,13 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
                    ////[Usuario], [Tipo]
                    for(int i=0;i<listaObjetoVO.size();i++){
                         Ordenes objetoVO_aux=(Ordenes) listaObjetoVO.get(i);
-                        Object fila[]=new Object[5];
+                        Object fila[]=new Object[6];
                         fila[0]=" "+objetoVO_aux.getCodigo();
                         fila[1]=" "+objetoVO_aux.getRestaurante().getNombre();     
                         fila[2]=" "+objetoVO_aux.getEmpleado().toString();   
                         fila[3]=" "+ formatoFecha.format(objetoVO_aux.getFecha());   
-                        fila[4]=" "+ formatoHora.format(objetoVO_aux.getHora());   
+                        fila[4]=" "+ formatoHora.format(objetoVO_aux.getHora());                        
+                        fila[5]=" "+(objetoVO_aux.getEstado()==0?"PENDIENTE":"ENTREGADA");     
                        dtm.addRow(fila);
                    }           
                     vistaLista.txtNumeroRegistros.setText("No registros: "+listaObjetoVO.size());
@@ -247,7 +249,7 @@ public class ControladorListaOrdenes implements ActionListener , Runnable, Mouse
             }
             if(e.getSource()==vistaLista.btnImprimir){                
                  ModeloReportes modeloReportes = new ModeloReportes();
-                 modeloReportes.imprimirListaOrdenes(ControladorGeneral.tabla_para_imprimir(dtm, sorter,vistaLista.tabla),fechaIni,fechaFin);
+                 modeloReportes.imprimirListaOrdenes(ControladorGeneral.tabla_para_imprimir(dtm, sorter,vistaLista.tabla),fechaIni,fechaFin,vistaLista.txtNumeroRegistros.getText());
                  
                  
             }

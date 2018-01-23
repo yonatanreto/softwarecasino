@@ -45,6 +45,7 @@ public class Conexion {
           Map parameters = new HashMap();
         parameters.put("hibernate.connection.username", pc.getUsuario());
         parameters.put("hibernate.connection.password", pc.getPassword());
+    
       //parameters.put("hibernate.connection.url","jdbc:mysql://"+this.getDatabaseURL()+"/nextventas");
       //parameters.put("hibernate.connection.url","jdbc:mysql://"+this.getDatabaseURL()+"/"+this.getDataBase());
       //parameters.put("hibernate.connection.is-connection-validation-required","true");
